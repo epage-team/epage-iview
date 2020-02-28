@@ -1,0 +1,47 @@
+.@{eppre}-widget-input{
+  .ivu-input-group-with{
+    &-prepend{
+      .ivu-input{
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+      }
+    }
+    &-append{
+      .ivu-input{
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+      }
+    }
+  }
+  .ivu-input-group-prepend,
+  .ivu-input-group-append{
+    display: none;
+  }
+  &-prefix{
+    .ivu-input-group-prepend{
+      display: table-cell;
+    }
+    &.ivu-input-group-with{
+      &-prepend{
+        .ivu-input{
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+      }
+    }
+  }
+  &-suffix{
+    .ivu-input-group-append{
+      display: table-cell;
+    }
+    &.ivu-input-group-with{
+      &-append{
+        .ivu-input{
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+      }
+    }
+  }
+  
+}

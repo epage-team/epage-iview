@@ -1,0 +1,77 @@
+{
+  "key": "kgJPuShZ5",
+  "name": "kgJPuShZ5",
+  "widget": "grid",
+  "type": "object",
+  "title": "epage测试",
+  "description": "描述",
+  "help": "",
+  "hidden": false,
+  "disabled": false,
+  "container": true,
+  "size": "default",
+  "rules": [],
+  "option": {},
+  "children": [{
+    "span": 24,
+    "list": [{
+      "key": "k1CyR0gyT",
+      "name": "username",
+      "widget": "input",
+      "type": "string",
+      "title": "姓名",
+      "description": "",
+      "help": "",
+      "hidden": false,
+      "disabled": false,
+      "placeholder": "请输入...",
+      "container": false,
+      "size": "default",
+      "rules": [
+        {
+          "required": false,
+          "message": "必填",
+          "type": "string",
+          "trigger": "blur"
+        }
+      ],
+      "option": {},
+      "children": [],
+      "list": []
+    }, {
+      "key": "k2CyR0gy2",
+      "name": "url",
+      "widget": "input",
+      "type": "string",
+      "title": "网址",
+      "description": "",
+      "help": "",
+      "hidden": false,
+      "disabled": false,
+      "placeholder": "请输入...",
+      "container": false,
+      "size": "default",
+      "rules": [
+        {
+          "required": false,
+          "message": "必填",
+          "type": "string",
+          "trigger": "blur"
+        }
+      ],
+      "option": {
+        "password": false,
+        "prefix": "https://", 
+        "suffix": ".com"
+      },
+      "children": [],
+      "list": []
+    }]
+  }],
+  "logics": [],
+  "label": {
+    "width": 80,
+    "position": "right",
+    "colon": false
+  }
+}

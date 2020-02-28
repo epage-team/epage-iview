@@ -1,0 +1,53 @@
+@import url('~epage/src/style/var.less');
+@import url('./widgets/main.less');
+
+.ep-mode-display{
+  .ivu-form-item{
+    margin-bottom: 0;
+  }
+  .ivu-form-item-label {
+    padding-right: 6px;
+    &:after {
+      content: '：';
+    }
+  } 
+}
+
+.ep-mode-edit{
+  .ivu-form-item{
+    margin-bottom: 20px;
+  }
+  .ivu-form-item-error-tip {
+    padding-top: 3px;
+  }
+}
+
+.ivu-form-item-content{
+  &:hover{
+    .ep-widget-dynamic-remove{
+      display: inline-block;
+    }
+  }
+}
+.ep-widget-dynamic-remove{
+  display: none;
+  font-size: 18px;
+  text-align: center;
+  height: 28px;
+  line-height: 28px;
+  width: 28px;
+  position: absolute;
+  right: -14px;
+  top: -14px;
+  color:#fff;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.26);
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+.ep-widget-dynamic-container{
+  border: 1px dashed #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+ 
