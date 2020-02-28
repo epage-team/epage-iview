@@ -9,7 +9,7 @@
 ## 安装
 
 ```sh
-npm install epage-iview -S
+npm install vue@2.x vuex@3.x iview@2.x epage-iview -S
 ```
 
 ## 设计器及渲染器示例
@@ -17,9 +17,16 @@ npm install epage-iview -S
 -  `npm` 方式引入（推荐）
 
 ```js
+import Vue from 'vue'
+import Vuex from 'vuex'
+import iview from 'iview'
 import widgets, { Render, Epage } from 'epage-iview'
 import schema from './schema.json'
 import 'epage-iview/src/style/main.less'
+
+// 项目中已经use后不需要再次use
+Vue.use(Vuex)
+Vue.use(iview)
 
 const el = document.getElementById('root')
 // 设计器
