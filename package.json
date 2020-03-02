@@ -15,14 +15,21 @@
   },
   "files": [
     "dist",
-    "src",
-    "build"
+    "src"
   ],
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://github.com/epage-team/epage-iview.git"
   },
-  "private": false,
+  "keywords": [
+    "epage",
+    "epage-iview",
+    "render"
+  ],
+  "bugs": {
+    "url": "https://github.com/epage-team/epage-iview/issues"
+  },
+  "homepage": "https://github.com/epage-team/epage-iview#readme",
   "license": "MIT",
   "dependencies": {
     "epage": "^0.0.1",
