@@ -44,7 +44,6 @@ import Epage from 'epage'
 const { isNotEmptyString } = Epage.helper
 
 export default {
-  extends: viewExtend,
   filters: {
     string2Array (val) {
       if (typeof val === 'string') {
@@ -54,6 +53,7 @@ export default {
       }
     }
   },
+  extends: viewExtend,
   computed: {
     headers () {
       const result = {}

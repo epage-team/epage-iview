@@ -22,7 +22,6 @@
 import viewExtend from '../../extends/view'
 import dynamicMixins from '../../mixins/dynamicMixins'
 
-
 export default {
   extends: viewExtend,
   mixins: [dynamicMixins],
