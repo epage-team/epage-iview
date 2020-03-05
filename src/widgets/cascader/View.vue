@@ -40,7 +40,7 @@ export default {
       let result = []
       if (type === 'static') result = data || []
       if (type === 'dynamic') result = dynamicData || []
-      return this.formatData(result)
+      return this.formatData(JSON.parse(JSON.stringify(result)))
     }
   },
   methods: {

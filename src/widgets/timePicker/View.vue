@@ -7,7 +7,7 @@
     TimePicker(
        v-if='schema.key'
       :transfer='true'
-      :type='schema.option.type'
+      :type='type'
       :format='schema.option.format'
       :disabled='schema.disabled'
       :placeholder='schema.placeholder'
@@ -20,6 +20,11 @@
 import viewExtend from '../../extends/view'
 
 export default {
-  extends: viewExtend
+  extends: viewExtend,
+  computed: {
+    type () {
+      return this.schema.option.range ? 'timerange' : 'time'
+    }
+  }
 }
 </script>
