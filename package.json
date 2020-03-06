@@ -1,6 +1,6 @@
 {
   "name": "epage-iview",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "epage render package based on iview component library",
   "author": "Chengzi <ttghost@126.com>",
   "main": "./dist/epage-iview.min.js",
@@ -38,7 +38,7 @@
     }
   },
   "dependencies": {
-    "epage": "^0.0.1",
+    "epage": "^0.1.0",
     "vue": "^2.5.16",
     "vuedraggable": "^2.20.0",
     "vuex": "^3.1.2"

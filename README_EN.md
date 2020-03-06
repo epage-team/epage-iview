@@ -1,33 +1,33 @@
 # EpageIview
 
-基于iview组件库的 [epage](https://github.com/didichuxing/epage) 渲染包
+iview based [epage](https://github.com/didichuxing/epage) rendering package
 
-[English Introduction](./README_EN.md) | 中文介绍
+English Introduction | [中文介绍](./README.md)
 
-## 文档
+## Documents
 
-官网：[http://epage.didichuxing.com](http://epage.didichuxing.com)
+Official website：[http://epage.didichuxing.com](http://epage.didichuxing.com)
 
-- [快速起步](http://epage.didichuxing.com/usage/#快速起步)
-- [开发文档](http://epage.didichuxing.com/developer/)
-- [设计器API](http://epage.didichuxing.com/developer/epage.html)
-- [如何开发widget?](http://epage.didichuxing.com/developer/widget.html)
-- [在线示例](http://epage.didichuxing.com/examples/)
+- [Quick Start](http://epage.didichuxing.com/usage/#快速起步)
+- [Development Documentation](http://epage.didichuxing.com/developer/)
+- [Epage API](http://epage.didichuxing.com/developer/epage.html)
+- [How to develop widget?](http://epage.didichuxing.com/developer/widget.html)
+- [Online Demos](http://epage.didichuxing.com/examples/)
 
-## 演示地址
+## Demo
 
 **[Demo](http://epage.didichuxing.com/examples/render.html)**
 
-## 安装
+## Install
 
 ```sh
-// 需提前安装vue vuex iview@2 vuedragable
-npm install epage-iview -S
+// install vue vuex iview@2 vuedragable in advance
+npm install epage -S
 ```
 
-## 设计器及渲染器示例
+## Usage
 
--  `npm` 方式引入（推荐）
+-  `npm` (recommend)
 
 ```js
 import Vue from 'vue'
@@ -37,30 +37,30 @@ import widgets, { Render, Epage } from 'epage-iview'
 import schema from './schema.json'
 import 'epage-iview/src/style/main.less'
 
-// 项目中已经use后不需要再次use
+// if already used in the project, don't use it here
 Vue.use(Vuex)
 Vue.use(iview)
 
 const el = document.getElementById('root')
-// 设计器
+// Instantiate Designer
 new Epage({ el, widgets, schema, Render })
-// 渲染器
+// or instantiate Render
 new Render({ el, widgets, schema })
 ```
 
--  `script` 方式引入
+-  `script`
 
 ```html
-<!-- 样式 -->
+<!-- third-party style -->
 <link href='https://cdn.bootcss.com/iview/3.5.1/styles/iview.css' rel='stylesheet'></link>
 <link href='./epage.css' rel='stylesheet'></link>
 <link href='./epage-iview.css' rel='stylesheet'></link>
 
-<!-- 第三方脚本 -->
+<!-- third lib -->
 <script src='https://cdn.bootcss.com/vue/2.6.10/vue.min.js' ></script>
 <script src='https://cdn.bootcss.com/vuex/3.1.1/vuex.min.js' ></script>
 <script src='https://cdn.bootcss.com/iview/3.5.1/iview.min.js' ></script>
-<!-- 以下两个脚本仅在new Epage需要用，new Render不用 -->
+<!-- The following two scripts are only needed for new Epage, not for new Render -->
 <script src='//cdn.jsdelivr.net/npm/sortablejs@1.8.4/Sortable.min.js' ></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.20.0/vuedraggable.umd.min.js' ></script>
 
@@ -73,9 +73,9 @@ Vue.use(iview)
 const el = document.getElementById('root')
 const { default: widgets, Render } = EpageIview
 
-// 设计器
+// Instantiate Designer
 new Epage({ el, widgets, Render })
-// 渲染器
+// or instantiate Render
 new Render({ el, widgets, schema })
 </script>
 
