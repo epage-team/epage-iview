@@ -27,7 +27,6 @@ PR
 [{keyword}]({scope}): {description}
 ```
 
-/^(revert|feat|fix|docs|style|refactor|perf|test|workflow|chore|build)(\(.+\))?: .{1,50}/
 - `{keyword}`
   - `revert` 撤销某些提交
   - `feat` 新增功能
