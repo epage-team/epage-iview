@@ -1,2 +1,1 @@
-# `epage-iview` CHANGELOG
-
+# Change Log
