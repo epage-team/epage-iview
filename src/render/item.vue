@@ -112,11 +112,11 @@
     //- not dynamic widget
     FormItem(
       v-if='!schema.dynamic || tab === "design"'
-      :class='{"ep-widget-item-fullcol": !schema.title}'
-      :label='schema.title'
+      :class='{"ep-widget-item-fullcol": !schema.label}'
+      :label='schema.label'
       :prop='schema.key'
     )
-      span(v-if='schema.help' slot='label') {{schema.title}}
+      span(v-if='schema.help' slot='label') {{schema.label}}
         Tooltip(:content='schema.help' :transfer="true")
           Icon(type='ios-information-outline')
       component.ep-widget-control(
@@ -128,7 +128,7 @@
       Button(v-if='schema.dynamic' style='margin-top: 5px;' :size='schema.size || rootSchema.size' type='dashed') 添加
     //- dynamic widget
     template(v-else)
-      FormItem(v-if='schema.list.length===0' :class='{"ep-widget-item-fullcol": !schema.title}' :label='schema.title')
+      FormItem(v-if='schema.list.length===0' :class='{"ep-widget-item-fullcol": !schema.label}' :label='schema.label')
         Button(
           style='margin-top: 5px;'
           :size='schema.size || rootSchema.size'
@@ -138,11 +138,11 @@
       FormItem(
         v-for='(sc, index) in schema.list'
         :key='sc.key'
-        :class='{"ep-widget-item-fullcol": !sc.title}'
-        :label='index === 0 ? schema.title : undefined'
+        :class='{"ep-widget-item-fullcol": !sc.label}'
+        :label='index === 0 ? schema.label : undefined'
         :prop='sc.key'
       )
-        span(v-if='sc.help' slot='label') {{sc.title}}
+        span(v-if='sc.help' slot='label') {{sc.label}}
           Tooltip(:content='sc.help' :transfer="true")
             Icon(type='ios-information-outline')
         component.ep-widget-control(
@@ -152,7 +152,7 @@
         )
         .ep-widget-description(v-if='sc.description') {{sc.description}}
         Icon.ep-widget-dynamic-remove(title='删除' :type='icons.remove' @click.native='onOriginDynamicRemove($event, schema, index)')
-      FormItem(v-if='schema.list.length!==0' :class='{"ep-widget-item-fullcol": !schema.title}' label=' ')
+      FormItem(v-if='schema.list.length!==0' :class='{"ep-widget-item-fullcol": !schema.label}' label=' ')
         Button(type='dashed' style='margin-top: 5px;'
           :size='schema.size || rootSchema.size'
           @click='onOriginDynamicAdd($event, schema)'

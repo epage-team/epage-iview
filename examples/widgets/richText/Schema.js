@@ -1,11 +1,11 @@
 import { Epage } from 'epage-iview'
 
-export default class RichTextSchema extends Epage.Schema {
+export default class RichTextSchema extends Epage.schema.FormSchema {
   constructor (props) {
     super()
-    this.title = '富文本'
+    this.label = '富文本'
     this.placeholder = '请输入'
-    this.$init(props)
+    this.create(props)
   }
 }
 
