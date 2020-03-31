@@ -1,74 +1,219 @@
 {
-  "key": "kgJPuShZ5",
-  "name": "kgJPuShZ5",
+  "key": "kuLlthRrI",
   "widget": "grid",
   "type": "object",
-  "title": "epage测试",
-  "description": "描述",
-  "help": "",
-  "hidden": false,
+  "title": "测试",
+  "description": "",
   "disabled": false,
   "container": true,
   "size": "default",
-  "rules": [],
   "option": {},
-  "children": [{
-    "span": 24,
-    "list": [{
-      "key": "k1CyR0gyT",
-      "name": "username",
-      "widget": "input",
-      "type": "string",
-      "title": "姓名",
-      "description": "",
-      "help": "",
-      "hidden": false,
-      "disabled": false,
-      "placeholder": "请输入...",
-      "container": false,
-      "size": "default",
-      "rules": [
+  "children": [
+    {
+      "span": 24,
+      "list": [
         {
-          "required": false,
-          "message": "必填",
+          "key": "k6qgdZWrJ",
+          "name": "email",
+          "widget": "input",
           "type": "string",
-          "trigger": "blur"
-        }
-      ],
-      "option": {},
-      "children": [],
-      "list": []
-    }, {
-      "key": "k2CyR0gy2",
-      "name": "url",
-      "widget": "input",
-      "type": "string",
-      "title": "网址",
-      "description": "",
-      "help": "",
-      "hidden": false,
-      "disabled": false,
-      "placeholder": "请输入...",
-      "container": false,
-      "size": "default",
-      "rules": [
+          "label": "邮箱",
+          "description": "",
+          "help": "",
+          "hidden": false,
+          "disabled": false,
+          "placeholder": "请输入邮箱",
+          "rules": [
+            {
+              "required": true,
+              "message": "必填",
+              "type": "string",
+              "trigger": "blur"
+            },
+            {
+              "message": "邮箱格式不正确",
+              "type": "email"
+            }
+          ],
+          "option": {
+            "password": false,
+            "prefix": "",
+            "suffix": ""
+          },
+          "list": []
+        },
         {
-          "required": false,
-          "message": "必填",
+          "key": "kYMelcB1b",
+          "name": "pwd",
+          "widget": "input",
           "type": "string",
-          "trigger": "blur"
+          "label": "密码",
+          "description": "",
+          "help": "",
+          "hidden": false,
+          "disabled": false,
+          "placeholder": "6至18位英文或数字",
+          "rules": [
+            {
+              "required": true,
+              "message": "必填",
+              "type": "string",
+              "trigger": "blur"
+            },
+            {
+              "message": "请输入6至18位英文或数字",
+              "type": "pattern",
+              "pattern": "^[\\da-zA-Z]{6,18}$",
+              "ignoreCase": false,
+              "global": false,
+              "multiline": false
+            }
+          ],
+          "option": {
+            "password": true,
+            "prefix": "",
+            "suffix": ""
+          },
+          "list": []
+        },
+        {
+          "key": "kvs6RarPV",
+          "name": "checkbox",
+          "widget": "checkbox",
+          "type": "array<string>",
+          "label": " ",
+          "description": "",
+          "help": "",
+          "hidden": false,
+          "disabled": false,
+          "placeholder": "请选择",
+          "rules": [
+            {
+              "required": false,
+              "message": "必填勾选",
+              "type": "string",
+              "trigger": "change"
+            }
+          ],
+          "option": {
+            "type": "static",
+            "direction": "horizontal",
+            "url": "",
+            "adapter": "",
+            "dynamicData": [],
+            "data": [
+              {
+                "key": "yes",
+                "value": "已阅读 《xxx协议》"
+              }
+            ]
+          },
+          "list": []
+        },
+        {
+          "key": "kONECsQaO",
+          "widget": "grid",
+          "type": "object",
+          "label": "布局",
+          "hidden": false,
+          "container": true,
+          "option": {
+            "gutter": 30,
+            "align": "top",
+            "justify": "center"
+          },
+          "children": [
+            {
+              "span": 5,
+              "list": [
+                {
+                  "key": "kzZdhfHic",
+                  "widget": "button",
+                  "hidden": false,
+                  "disabled": true,
+                  "option": {
+                    "text": "提交",
+                    "type": "primary",
+                    "icon": "",
+                    "long": true,
+                    "ghost": false,
+                    "shape": "square"
+                  },
+                  "list": []
+                }
+              ]
+            },
+            {
+              "span": 5,
+              "list": [
+                {
+                  "key": "k4g7YHiGd",
+                  "widget": "button",
+                  "hidden": false,
+                  "disabled": false,
+                  "option": {
+                    "text": "重置",
+                    "type": "default",
+                    "icon": "",
+                    "long": true,
+                    "ghost": false,
+                    "shape": "square"
+                  },
+                  "list": []
+                }
+              ]
+            }
+          ],
+          "list": []
         }
-      ],
-      "option": {
-        "password": false,
-        "prefix": "https://", 
-        "suffix": ".com"
-      },
-      "children": [],
-      "list": []
-    }]
-  }],
-  "logics": [],
+      ]
+    }
+  ],
+  "list": [],
+  "logics": [
+    {
+      "type": "value",
+      "key": "kvs6RarPV",
+      "action": "<>",
+      "value": "yes",
+      "effects": [
+        {
+          "key": "kzZdhfHic",
+          "properties": [
+            {
+              "key": "hidden",
+              "value": false
+            },
+            {
+              "key": "disabled",
+              "value": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "value",
+      "key": "kvs6RarPV",
+      "action": "><",
+      "value": "yes",
+      "effects": [
+        {
+          "key": "kzZdhfHic",
+          "properties": [
+            {
+              "key": "hidden",
+              "value": false
+            },
+            {
+              "key": "disabled",
+              "value": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
   "label": {
     "width": 80,
     "position": "right",
