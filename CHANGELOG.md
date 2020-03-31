@@ -1,5 +1,10 @@
 # Change Log
 
+### 0.2.1
+
+- [fix] : 升级Epage，修复逻辑面板widget名展示不准确问题
+- [fix] : 修复`store.getFormData()`存在多余字段问题
+
 ### 0.2.0
 
 - [feat] : 升级Epage，替换 `Epage.Schema` 为 `Epage.schema`，其中  `Epage.schema`为如下：
