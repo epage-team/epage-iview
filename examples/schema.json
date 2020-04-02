@@ -1,28 +1,33 @@
 {
   "key": "kuLlthRrI",
   "widget": "grid",
-  "type": "object",
-  "title": "测试",
-  "description": "",
-  "disabled": false,
-  "container": true,
-  "size": "default",
+  "hidden": false,
   "option": {},
+  "label": {
+    "width": 80,
+    "position": "right",
+    "colon": false
+  },
+  "container": true,
   "children": [
     {
       "span": 24,
       "list": [
         {
           "key": "k6qgdZWrJ",
-          "name": "email",
           "widget": "input",
+          "hidden": false,
+          "option": {
+            "password": false,
+            "prefix": "",
+            "suffix": ""
+          },
+          "name": "email",
           "type": "string",
           "label": "邮箱",
           "description": "",
           "help": "",
-          "hidden": false,
           "disabled": false,
-          "placeholder": "请输入邮箱",
           "rules": [
             {
               "required": true,
@@ -35,24 +40,23 @@
               "type": "email"
             }
           ],
-          "option": {
-            "password": false,
-            "prefix": "",
-            "suffix": ""
-          },
-          "list": []
+          "placeholder": "请输入邮箱"
         },
         {
           "key": "kYMelcB1b",
-          "name": "pwd",
           "widget": "input",
+          "hidden": false,
+          "option": {
+            "password": true,
+            "prefix": "",
+            "suffix": ""
+          },
+          "name": "pwd",
           "type": "string",
           "label": "密码",
           "description": "",
           "help": "",
-          "hidden": false,
           "disabled": false,
-          "placeholder": "6至18位英文或数字",
           "rules": [
             {
               "required": true,
@@ -69,32 +73,12 @@
               "multiline": false
             }
           ],
-          "option": {
-            "password": true,
-            "prefix": "",
-            "suffix": ""
-          },
-          "list": []
+          "placeholder": "6至18位英文或数字"
         },
         {
           "key": "kvs6RarPV",
-          "name": "checkbox",
           "widget": "checkbox",
-          "type": "array<string>",
-          "label": " ",
-          "description": "",
-          "help": "",
           "hidden": false,
-          "disabled": false,
-          "placeholder": "请选择",
-          "rules": [
-            {
-              "required": false,
-              "message": "必填勾选",
-              "type": "string",
-              "trigger": "change"
-            }
-          ],
           "option": {
             "type": "static",
             "direction": "horizontal",
@@ -108,20 +92,33 @@
               }
             ]
           },
-          "list": []
+          "name": "checkbox",
+          "type": "array<string>",
+          "label": " ",
+          "description": "",
+          "help": "",
+          "disabled": false,
+          "rules": [
+            {
+              "required": false,
+              "message": "必填勾选",
+              "type": "array",
+              "trigger": "change"
+            }
+          ],
+          "placeholder": "请选择"
         },
         {
           "key": "kONECsQaO",
           "widget": "grid",
-          "type": "object",
-          "label": "布局",
           "hidden": false,
-          "container": true,
           "option": {
             "gutter": 30,
             "align": "top",
             "justify": "center"
           },
+          "label": "布局",
+          "container": true,
           "children": [
             {
               "span": 5,
@@ -130,7 +127,6 @@
                   "key": "kzZdhfHic",
                   "widget": "button",
                   "hidden": false,
-                  "disabled": true,
                   "option": {
                     "text": "提交",
                     "type": "primary",
@@ -139,7 +135,7 @@
                     "ghost": false,
                     "shape": "square"
                   },
-                  "list": []
+                  "disabled": true
                 }
               ]
             },
@@ -150,7 +146,6 @@
                   "key": "k4g7YHiGd",
                   "widget": "button",
                   "hidden": false,
-                  "disabled": false,
                   "option": {
                     "text": "重置",
                     "type": "default",
@@ -159,17 +154,18 @@
                     "ghost": false,
                     "shape": "square"
                   },
-                  "list": []
+                  "disabled": false
                 }
               ]
             }
-          ],
-          "list": []
+          ]
         }
       ]
     }
   ],
-  "list": [],
+  "title": "测试",
+  "description": "",
+  "size": "default",
   "logics": [
     {
       "type": "value",
@@ -213,10 +209,5 @@
         }
       ]
     }
-  ],
-  "label": {
-    "width": 80,
-    "position": "right",
-    "colon": false
-  }
+  ]
 }
