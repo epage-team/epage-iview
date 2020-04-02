@@ -1,6 +1,6 @@
 {
   "name": "epage-iview",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "epage render package based on iview component library",
   "author": "Chengzi <ttghost@126.com>",
   "main": "./dist/epage-iview.min.js",
@@ -37,12 +37,6 @@
       "commit-msg": "node build/verify-commit-msg.js"
     }
   },
-  "dependencies": {
-    "epage": "^0.2.1",
-    "vue": "^2.5.16",
-    "vuedraggable": "^2.20.0",
-    "vuex": "^3.1.2"
-  },
   "engines": {
     "node": ">= 8.10.0",
     "npm": ">= 4.0.0"
@@ -52,7 +46,19 @@
     "last 2 versions",
     "not ie <= 8"
   ],
+  "dependencies": {
+    "epage": "^0.2.2"
+  },
+  "peerDependencies": {
+    "vue": ">2.5",
+    "iview": ">=2.13",
+    "vuedraggable": ">=2.20.0",
+    "vuex": ">=3.1"
+  },
   "devDependencies": {
+    "vue": "^2.5.16",
+    "vuedraggable": "^2.20.0",
+    "vuex": "^3.1.2",
     "@babel/core": "^7.8.4",
     "@babel/preset-env": "^7.8.4",
     "@vue/babel-helper-vue-jsx-merge-props": "^1.0.0",

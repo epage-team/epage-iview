@@ -21,7 +21,7 @@ export default {
       }
     },
     mode () {
-      return typeof this.schema.mode === 'boolean' ? this.schema.mode : this.store.getState().mode
+      return this.store.getState().mode
     },
     model: {
       get () {
