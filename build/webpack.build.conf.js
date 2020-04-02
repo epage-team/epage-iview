@@ -8,7 +8,7 @@ const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const pkg = require('../package.json')
 
-var banner = `epage-iview v${pkg.version}
+const banner = `epage-iview v${pkg.version}
 (c) 2020-present Chengzi
 Released under the MIT License.`
 
@@ -83,7 +83,7 @@ const webpackConfig = merge(webpackBaseConfig, {
 })
 
 if (process.env.npm_config_report) {
-  var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+  const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
   webpackConfig.plugins.push(new BundleAnalyzerPlugin())
 }
 

@@ -32,4 +32,5 @@ const webpackConfig = merge(webpackBaseConfig, {
     mainFields: ['main:epage', 'main']
   }
 })
+
 module.exports = webpackConfig

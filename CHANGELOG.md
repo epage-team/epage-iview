@@ -1,5 +1,10 @@
 # Change Log
 
+### 0.2.2
+
+- [fix] : 升级Epage，优化默认widget的Schema字段，删除冗余，更新默认字段
+- [fix] : 优化View组件内mode值获取逻辑
+
 ### 0.2.1
 
 - [fix] : 升级Epage，修复逻辑面板widget名展示不准确问题
