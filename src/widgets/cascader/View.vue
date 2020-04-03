@@ -13,6 +13,7 @@
       transfer
       :size='size'
       v-model.trim='model[schema.key]'
+      :render-format='renderFormat'
       @on-change="event('on-change', ...arguments)"
     )
 </template>
@@ -44,6 +45,10 @@ export default {
     }
   },
   methods: {
+    renderFormat (label) {
+      const delimiter = this.schema.option.delimiter || '/'
+      return label.join(delimiter)
+    },
     /**
      * 递归找出符合值得label
      * @param {array} val=[] 组件的值

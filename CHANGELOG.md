@@ -1,5 +1,9 @@
 # Change Log
 
+### 0.2.3
+
+- [fix] : 升级Epage，优化部分基础widget datePicker、timePicker、cascader、inputNumber设置表单不准确问题
+
 ### 0.2.2
 
 - [fix] : 升级Epage，优化默认widget的Schema字段，删除冗余，更新默认字段
