@@ -27,7 +27,7 @@
       :on-format-error='handleUploadFormatError'
       :on-exceeded-size='handleSizeError'
     )
-      .ep-widget-upload-drag(v-if='schema.option.type === "drag"' :class="`ep-widget-upload-${rootSchema.size}`")
+      .ep-widget-upload-drag(v-if='schema.option.type === "drag"' :class="`ep-widget-upload-drag-${rootSchema.size}`")
         Icon(type="ios-cloud-upload")
         p 点击或拖拽文件到此上传
       Button(v-else type='ghost' icon='ios-cloud-upload-outline') {{schema.placeholder}}
