@@ -1,8 +1,8 @@
 <template lang="pug">
-.ep-widget.ep-upload-widget
+.ep-widget.ep-widget-upload
   template(v-if='mode === "display"')
-    .ep-upload-files(v-for='(file, index) in model[schema.key]' :key='"_"+index')
-      a.ep-file-name(
+    .ep-widget-upload-files(v-for='(file, index) in model[schema.key]' :key='"_"+index')
+      a.ep-widget-upload-filename(
         @click='getDownload(file.url, file.name)'
       ) {{file.name}}
 
@@ -27,14 +27,19 @@
       :on-format-error='handleUploadFormatError'
       :on-exceeded-size='handleSizeError'
     )
-      Button(type='ghost' icon='ios-cloud-upload-outline') {{schema.placeholder}}
+      .ep-widget-upload-drag(v-if='schema.option.type === "drag"' :class="`ep-widget-upload-${rootSchema.size}`")
+        Icon(type="ios-cloud-upload")
+        p 点击或拖拽文件到此上传
+      Button(v-else type='ghost' icon='ios-cloud-upload-outline') {{schema.placeholder}}
     template(v-if="schema.option.showUploadList")
-      .ep-upload-files(v-for='(file, index) in model[schema.key]' :key='"_"+index')
-        a.ep-file-name(
+      .ep-widget-upload-files(v-for='(file, index) in model[schema.key]' :key='"_"+index')
+        a.ep-widget-upload-filename(
+          title='点击下载'
           @click='getDownload(file.url, file.name)'
         ) {{file.name}}
-        Icon.ep-file-remove(
+        Icon.ep-widget-upload-file-remove(
           type='ios-trash-outline'
+          title='删除当前文件'
           @click.native.stop='handleRemoveFile(index)'
         )
 </template>
@@ -72,7 +77,8 @@ export default {
   },
   methods: {
     onBeforeUpload (file) {
-      const fileLen = this.model[this.schema.key].length
+      const model = this.store.getModel()
+      const fileLen = model[this.schema.key].length
       const multiple = this.schema.option.multiple
 
       if (fileLen && !multiple) {
@@ -80,7 +86,7 @@ export default {
         return false
       }
 
-      const extra = this.model[this.schema.key].find(v => file.name === v.name)
+      const extra = model[this.schema.key].find(v => file.name === v.name)
       if (fileLen && extra) {
         this.$Message.error('不能重复上传')
         return false
