@@ -19,48 +19,5 @@
   "title": "测试",
   "description": "",
   "size": "default",
-  "logics": [
-    {
-      "type": "value",
-      "key": "kvs6RarPV",
-      "action": "<>",
-      "value": "yes",
-      "effects": [
-        {
-          "key": "kzZdhfHic",
-          "properties": [
-            {
-              "key": "hidden",
-              "value": false
-            },
-            {
-              "key": "disabled",
-              "value": false
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "value",
-      "key": "kvs6RarPV",
-      "action": "><",
-      "value": "yes",
-      "effects": [
-        {
-          "key": "kzZdhfHic",
-          "properties": [
-            {
-              "key": "hidden",
-              "value": false
-            },
-            {
-              "key": "disabled",
-              "value": true
-            }
-          ]
-        }
-      ]
-    }
-  ]
+  "logics": []
 }

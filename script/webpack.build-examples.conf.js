@@ -5,59 +5,32 @@ const webpackBaseConfig = require('./webpack.base.conf.js')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
-const pkg = require('../package.json')
-
-const banner = `epage-iview v${pkg.version}
-(c) 2020-present Chengzi
-Released under the MIT License.`
 
 const webpackConfig = merge(webpackBaseConfig, {
-  mode: 'production',
   entry: {
-    'epage-iview': './src/main.js'
+    app: './examples/index.js'
   },
   output: {
-    path: path.resolve(__dirname, '../dist'),
+    path: path.resolve(__dirname, '../dist-examples'),
     publicPath: '',
-    filename: '[name].min.js',
-    library: 'EpageIview',
+    filename: '[name].[hash:8].js',
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
-  externals: {
-    'epage': {
-      root: 'Epage',
-      commonjs: 'epage',
-      commonjs2: 'epage',
-      amd: 'epage'
-    },
-    iview: 'iview',
-    vuedraggable: 'vuedraggable',
-    vue: {
-      root: 'Vue',
-      commonjs: 'vue',
-      commonjs2: 'vue',
-      amd: 'vue'
-    }
-  },
-  optimization: {
-    minimizer: [new UglifyJsPlugin({
-      parallel: true,
-      sourceMap: false,
-      uglifyOptions: {
-        ecma: 8,
-        warnings: false
-      }
-    })]
-  },
   plugins: [
-    new CleanWebpackPlugin({cleanOnceBeforeBuildPatterns: path.resolve(__dirname, '../dist')}),
-    new webpack.BannerPlugin(banner),
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: path.resolve(__dirname, '../dist-examples')
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: './examples/index.html',
+      inject: true,
+      chunksSortMode: 'dependency'
+    }),
     new UglifyJsPlugin({
-      sourceMap: true,
       uglifyOptions: {
-        ecma: 8,
         warnings: false
       },
       // exclude: /\/node_modules/,
@@ -66,20 +39,14 @@ const webpackConfig = merge(webpackBaseConfig, {
     }),
     new webpack.optimize.ModuleConcatenationPlugin(),
     new ExtractTextPlugin({
-      filename: '[name].css'
+      filename: 'epage-iview.css'
     }),
     new OptimizeCSSPlugin({
       cssProcessorOptions: {
         safe: true
       }
-    }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': '"production"'
     })
-  ],
-  resolve: {
-    // mainFields: ['main:epage', 'main']
-  }
+  ]
 })
 
 if (process.env.npm_config_report) {

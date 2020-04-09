@@ -22,10 +22,10 @@ const webpackConfig = merge(webpackBaseConfig, {
     }),
     new ExtractTextPlugin({
       filename: '[name].css'
-    }),
+    })
   ],
   devServer: {
-    port: 8081,
+    port: 8081
     // open: true
   },
   resolve: {
