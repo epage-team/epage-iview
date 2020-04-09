@@ -1,5 +1,9 @@
 # Change Log
 
+### 0.2.4
+
+- [fix] : 升级Epage，去除非表单widget的Schema部分静态属性（`validators`和`type`）
+
 ### 0.2.3
 
 - [fix] : 升级Epage，优化部分基础widget datePicker、timePicker、cascader、inputNumber设置表单不准确问题

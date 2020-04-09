@@ -8,7 +8,7 @@ const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const webpackConfig = merge(webpackBaseConfig, {
   mode: 'production',
   entry: {
-    'epage-iview': './src/style/render.less',
+    'epage-iview': './src/style/render.less'
   },
   output: {
     path: path.resolve(__dirname, '../dist'),
@@ -23,9 +23,6 @@ const webpackConfig = merge(webpackBaseConfig, {
       cssProcessorOptions: {
         safe: true
       }
-    }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': '"production"'
     })
   ],
   resolve: {
