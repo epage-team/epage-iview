@@ -9,7 +9,7 @@
 </template>
 <script>
 import widgets, { Render, Epage } from 'epage-iview'
-import * as richText from './widgets/richText'
+// import * as richText from './widgets/richText'
 import * as myRules from './rules'
 import rootSchema from './schema.json'
 
@@ -19,7 +19,7 @@ const { Rule, helper } = Epage
 Rule.set(myRules)
 // 自定义widget 的validators
 helper.setValidators(widgets, { input: ['phone'] })
-const myWidgets = helper.mergeWidget(widgets, richText)
+// const myWidgets = helper.mergeWidget(widgets, richText)
 
 export default {
   data () {
@@ -64,14 +64,14 @@ export default {
     formRender (schema) {
       const el = this.$refs.form
       // return new Render({ el, schema, widgets: myWidgets})
-      return new Render({ el, schema, widgets: myWidgets, mode: 'display' })
+      return new Render({ el, schema, widgets, mode: 'display' })
       // return this.render(el, { mode: 'edit' })
     },
     formDesign (schema) {
       const el = this.$refs.form
       // return new Epage({ el, Render })
       const { getSchema, getFormData } = this
-      return new Epage({ el, widgets: myWidgets, schema, Render, getSchema, getFormData })
+      return new Epage({ el, widgets, schema, Render, getSchema, getFormData })
     },
     getSchema (schema) {
       console.log(1, schema)

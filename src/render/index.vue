@@ -97,7 +97,7 @@ export default {
       return this.store.getSelectedSchema()
     },
     rules () {
-      return this.store.getFlatRules()
+      return this.store.getFormRules()
     },
     model () {
       return this.store.getModel()
