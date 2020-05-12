@@ -15,6 +15,7 @@ export default {
       const borderValue = `${thickness}px ${type} ${color};`
       let borderSide = ''
       let len = ''
+
       if (direction === 'horizontal') {
         borderSide = 'border-top'
         len = `width: ${length}%;`
@@ -31,6 +32,7 @@ export default {
         right: 'right: 1px;'
       }
       const border = borderSide + ':' + borderValue
+
       return style + positionMap[hposition] + positionMap[vposition] + len + border
     }
   }

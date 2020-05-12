@@ -1,7 +1,10 @@
 <template lang="pug">
 .ep-widget.ep-widget-upload
   template(v-if='mode === "display"')
-    .ep-widget-upload-files(v-for='(file, index) in model[schema.key]' :key='"_"+index')
+    .ep-widget-upload-files(
+      v-for='(file, index) in model[schema.key]'
+      :key='"_"+index'
+    )
       a.ep-widget-upload-filename(
         @click='getDownload(file.url, file.name)'
       ) {{file.name}}
@@ -27,12 +30,22 @@
       :on-format-error='handleUploadFormatError'
       :on-exceeded-size='handleSizeError'
     )
-      .ep-widget-upload-drag(v-if='schema.option.type === "drag"' :class="`ep-widget-upload-drag-${rootSchema.size}`")
+      .ep-widget-upload-drag(
+        v-if='schema.option.type === "drag"'
+        :class="`ep-widget-upload-drag-${rootSchema.size}`"
+      )
         Icon(type="ios-cloud-upload")
         p 点击或拖拽文件到此上传
-      Button(v-else type='ghost' icon='ios-cloud-upload-outline') {{schema.placeholder}}
+      Button(
+        v-else
+        type='ghost'
+        icon='ios-cloud-upload-outline'
+      ) {{schema.placeholder}}
     template(v-if="schema.option.showUploadList")
-      .ep-widget-upload-files(v-for='(file, index) in model[schema.key]' :key='"_"+index')
+      .ep-widget-upload-files(
+        v-for='(file, index) in model[schema.key]'
+        :key='"_"+index'
+      )
         a.ep-widget-upload-filename(
           title='点击下载'
           @click='getDownload(file.url, file.name)'
@@ -46,7 +59,8 @@
 <script>
 import viewExtend from '../../extends/view'
 import Epage from 'epage'
-const { isNotEmptyString } = Epage.helper
+
+const { isNotEmptyString, isArray } = Epage.helper
 
 export default {
   filters: {
@@ -63,11 +77,13 @@ export default {
     headers () {
       const result = {}
       const { headers } = this.schema.option
-      if (Array.isArray(headers)) {
+
+      if (isArray(headers)) {
         headers.forEach(item => {
           if (
             isNotEmptyString(item.key) &&
-            isNotEmptyString(item.value)) {
+            isNotEmptyString(item.value)
+          ) {
             result[item.key.trim()] = item.value.trim()
           }
         })
@@ -87,6 +103,7 @@ export default {
       }
 
       const extra = model[this.schema.key].find(v => file.name === v.name)
+
       if (fileLen && extra) {
         this.$Message.error('不能重复上传')
         return false
@@ -94,34 +111,43 @@ export default {
 
       this.$emit('on-before-upload', ...arguments)
     },
+
     handleSuccessUpload (res, file, fileList) {
       const { adapter } = this.schema.option
+
       try {
         /* eslint no-new-func: 0 */
         const getFile = new Function('data', adapter)
         var finallfile = getFile(res)
 
-        if (!finallfile.name || !finallfile.url) return
+        if (!finallfile.name || !finallfile.url) {
+          return
+        }
       } catch (e) {
         console.log(`返回数据不对 需要做适配：${e}`)
       }
       const curFile = { name: finallfile.name, url: finallfile.url }
       const value = this.model[this.schema.key] || []
+
       value.push(curFile)
       this.store.updateModel({ [this.schema.key]: [...value] })
 
       this.$emit('on-upload-success', ...arguments)
     },
+
     handleUploadError (error, file, fileList) {
       if (error) this.$emit('on-upload-error', ...arguments)
     },
+
     handleUploadFormatError (file, fileList) {
       this.$Message.warning({
         content: `仅支持 ${this.schema.option.format} 格式文件的上传`,
         duration: 4
       })
+
       this.$emit('on-upload-format-error', ...arguments)
     },
+
     handleRemoveFile (index) {
       const files = this.model[this.schema.key]
 
@@ -130,6 +156,7 @@ export default {
 
       this.$emit('on-remove-file', ...arguments)
     },
+
     handleSizeError (file, fileList) {
       this.$Message.warning({
         content: `上传文件大小不能超过 ${this.schema.option.maxSize} kb`,
@@ -138,6 +165,7 @@ export default {
 
       this.$emit('on-size-error', ...arguments)
     },
+
     getDownload (url, name) {
       this.$Message.info('文件已开始下载，请勿重复点击操作！')
 
@@ -147,6 +175,7 @@ export default {
         })
       })
     },
+
     // 下载文件方法
     funDownload (content, filename) {
       const eleLink = document.createElement('a')
@@ -162,12 +191,6 @@ export default {
       // 然后移除元素
       document.body.removeChild(eleLink)
     }
-    // handleProgressUpload (event, file, fileList) {
-    //   this.$emit('on-progress-upload', arguments)
-    // },
-    // handlePreviewFile (file) {
-    //   this.$emit('on-preview', arguments)
-    // },
   }
 }
 </script>

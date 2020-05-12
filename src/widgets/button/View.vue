@@ -34,13 +34,16 @@ export default {
       let result = type
 
       if (mainVersion >= IVIEW_V3) {
-        if (type === 'ghost') result = 'default'
+        if (type === 'ghost') {
+          result = 'default'
+        }
       }
       return result
     },
     // 兼容iview@3 按钮ghost类型
     isGhost (schema) {
       const { type, ghost } = schema.option
+
       return type === 'ghost' || Boolean(ghost)
     }
   }

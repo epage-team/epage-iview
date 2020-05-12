@@ -41,6 +41,7 @@ export default {
       let pos = 'left'
       const positions = 'left|center|right'.split('|')
       const { position } = this.schema.option.page
+
       if (positions.indexOf(position) > -1) {
         pos = position
       }
@@ -55,14 +56,18 @@ export default {
   methods: {
     tableData () {
       const { page = {}, dynamicData } = this.schema.option
+
       return dynamicData.slice(0, page.size)
     },
+
     listenerMessage () {
       this.worker.onmessage = e => {
         const { message, success, data } = e.data
+
         if (success) {
           const { key } = this.schema
           const option = { page: data.page, dynamicData: data.data }
+
           this.store.updateWidgetOption(key, option)
         } else {
           console.log('error: ', message)
@@ -70,6 +75,7 @@ export default {
         this.worker.terminate()
       }
     },
+
     /**
      * 获取下拉组件动态选项
      */
@@ -77,7 +83,10 @@ export default {
       const { url, adapter } = this.schema.option
       // const { tab } = this.store.state
       const tab = this.store.getTab()
-      if (!url || tab === 'design') return
+
+      if (!url || tab === 'design') {
+        return
+      }
       ajax(url).then(res => {
         this.worker.postMessage({
           action: 'tableFetch',

@@ -62,6 +62,7 @@ export default {
     EpWidgetItem,
     Draggable
   },
+
   data () {
     return {
       oldModel: {},
@@ -70,6 +71,7 @@ export default {
       mode: 'edit'
     }
   },
+
   computed: {
     childrenSchema () {
       const { store } = this.$root.$options.extension
@@ -103,11 +105,13 @@ export default {
       return this.store.getModel()
     }
   },
+
   watch: {
     model: {
       handler: function (newModel, oldModel) {
         // 需要先设置schema，然后设置model，否则设置的model可能不生效
         const diffs = this.diffModel(newModel, this.oldModel)
+
         if (this.shouldChangeModel(diffs, this.oldDiffs)) {
           this.oldDiffs = Object.assign({}, diffs)
           this.oldModel = Object.assign({}, newModel)
@@ -117,13 +121,16 @@ export default {
       deep: true
     }
   },
+
   created () {
     const { mode } = this.$root.$options.extension
+
     if (mode) {
       this.mode = mode
       this.changeMode(mode)
     }
   },
+
   methods: {
     validateFields () {
       return new Promise((resolve, reject) => {
@@ -140,8 +147,10 @@ export default {
       this.$refs.epForm.resetFields()
       this.store.resetModel()
     },
+
     shouldChangeModel (newDiffs, oldDiffs) {
       let result = false
+
       if (Object.keys(newDiffs).length) {
         for (const i in newDiffs) {
           if (!(i in oldDiffs) || newDiffs[i] !== oldDiffs[i]) {
@@ -154,6 +163,7 @@ export default {
 
     diffModel (newModel, oldModel) {
       const diffs = {}
+
       for (const k in newModel) {
         if (k in this.flatSchemas && newModel[k] !== oldModel[k]) {
           diffs[k] = newModel[k]
@@ -164,6 +174,7 @@ export default {
 
     changeWithModel (modelDiffs) {
       const valueLogics = this.rootSchema.logics.filter(logic => logic.key && logic.type === 'value')
+
       if (valueLogics.length) {
         this.store.updateWidgetByModel(modelDiffs)
       }
@@ -176,6 +187,7 @@ export default {
     onEvent (key, onType, ...args) {
       this.$emit('on-event', ...arguments)
       const type = onType.indexOf('on-') === 0 ? onType.split('on-')[1] : onType
+
       if (key in evt.$events && type in evt.$events[key]) {
         const callbacks = evt.$events[key][type] || []
         callbacks.forEach(callback => {
@@ -192,12 +204,14 @@ export default {
     onDynamicRemove (schema, index) {
       this.store.dynamicRemoveWidget(schema.key, index)
     },
+
     changeMode (mode) {
       this.store.updateMode(mode)
     },
 
     onWidgetSelect (currentSchema) {
       const { tab, selectedSchema } = this.store.getState()
+
       if (tab === 'design' && selectedSchema && selectedSchema.key !== currentSchema.key) {
         this.store.selectWidget(currentSchema.key)
         this.$emit('on-select', currentSchema)

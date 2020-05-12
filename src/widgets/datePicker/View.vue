@@ -19,7 +19,7 @@
 </template>
 <script>
 import viewExtend from '../../extends/view'
-import { Epage } from 'epage-iview'
+import Epage from 'epage'
 
 const { include } = Epage.helper
 const timeOptions = ['HH:mm:ss', 'HH:mm', 'mm:ss']
@@ -31,10 +31,13 @@ export default {
     cls () {
       let result = {}
       const { option } = this.schema
+
       if (option && option.type === 'datetimerange') {
         const size = this.schema.size || this.rootSchema.size || 'default'
+
         result = `ep-widget-datePicker-${size}`
       }
+
       return result
     }
   },
@@ -42,21 +45,24 @@ export default {
     onDateChange (value) {
       const newValue = value
       const oldValue = this.store.getModel(this.schema.key)
+
       if (newValue !== oldValue) {
         this.store.updateModel({ [this.schema.key]: newValue })
         this.event('on-change', ...arguments)
       }
     },
+
     hasTime (format) {
       return !!timeOptions.filter(t => include(format, t)).length
     },
+
     isMonth (format) {
       return !!monthOptions.filter(t => include(format, t)).length && !include(format, 'dd')
     },
+
     getType () {
       const { option } = this.schema
       const { range, format } = option
-
       let type = 'date'
 
       if (range) {

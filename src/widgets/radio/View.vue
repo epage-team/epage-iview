@@ -12,7 +12,11 @@
       v-model='model[schema.key]'
       @on-change="event('on-change', ...arguments)"
     )
-      Radio(v-for='(item, k) in options || []' :key='item.key' :label='item.key') {{item.value}}
+      Radio(
+        v-for='(item, k) in options || []'
+        :key='item.key'
+        :label='item.key'
+      ) {{item.value}}
 </template>
 <script>
 import viewExtend from '../../extends/view'
@@ -24,7 +28,10 @@ export default {
   computed: {
     displayValue () {
       const value = this.model[this.schema.key]
-      const result = this.options.filter(item => item.key === value).map(item => item.value)
+      const result = this.options
+        .filter(item => item.key === value)
+        .map(item => item.value)
+
       return result + ''
     }
   }
