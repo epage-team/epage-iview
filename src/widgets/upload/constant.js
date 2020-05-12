@@ -2,6 +2,7 @@ export const headers = {
   'Content-Type': ['application/json'],
   'Content-Length': []
 }
+
 export const extensions = [
   // 图片类型
   'png', 'jpg', 'jpeg', 'bmp',

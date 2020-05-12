@@ -34,10 +34,13 @@ export default {
     displayValue () {
       const value = this.model[this.schema.key]
       let result = []
+
       result = value ? value.map(item => {
         const option = this.options.find(option => option.key === item)
+
         return !!option && option.value
       }) : []
+
       return result + ''
     }
   }

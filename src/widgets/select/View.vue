@@ -15,7 +15,11 @@
       v-model='model[schema.key]'
       @on-change="event('on-change', ...arguments)"
     )
-      Option(v-for='(item, k) in options' :key='k' :value='item.key') {{item.value}}
+      Option(
+        v-for='(item, k) in options'
+        :key='k'
+        :value='item.key'
+      ) {{item.value}}
 </template>
 <script>
 import viewExtend from '../../extends/view'
@@ -29,13 +33,16 @@ export default {
       const { multiple } = this.schema.option
       const value = this.model[this.schema.key]
       let result = []
+
       if (multiple) {
         result = !value ? value.map(item => {
           const option = this.options.find(option => option.key === item)
+
           return !!option && option.value
         }) : []
       } else {
         const option = this.options.find(option => option.key === value)
+
         result = option !== undefined ? option.value : []
       }
       return result + ''

@@ -21,8 +21,9 @@ Official website：[http://epage.didichuxing.com](http://epage.didichuxing.com)
 ## Install
 
 ```sh
-// install vue vuex iview@2 vuedragable in advance
-npm install epage -S
+# install vue vuex iview@2 vuedragable in advance
+npm install epage-iview -S
+# or yarn add epage-iview
 ```
 
 ## Usage
@@ -44,7 +45,7 @@ Vue.use(iview)
 const el = document.getElementById('root')
 // Instantiate Designer
 new Epage({ el, widgets, schema, Render })
-// or instantiate Render
+// or create Render
 new Render({ el, widgets, schema })
 ```
 
@@ -70,12 +71,13 @@ new Render({ el, widgets, schema })
 <script>
 Vue.use(Vuex)
 Vue.use(iview)
+
 const el = document.getElementById('root')
 const { default: widgets, Render } = EpageIview
 
 // Instantiate Designer
 new Epage({ el, widgets, Render })
-// or instantiate Render
+// or create Render
 new Render({ el, widgets, schema })
 </script>
 

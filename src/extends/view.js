@@ -1,4 +1,5 @@
 import Epage from 'epage'
+
 const { defaultSchema } = Epage.constant
 
 export default {

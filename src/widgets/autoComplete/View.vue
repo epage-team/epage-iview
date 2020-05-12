@@ -16,7 +16,11 @@
       @on-focus="event('on-focus', ...arguments)"
       @on-blur="event('on-blur', ...arguments)"
     )
-      Option(v-for='(item, k) in list || []' :key='k + "-"' :value='item') {{item}}
+      Option(
+        v-for='(item, k) in list || []'
+        :key='k + "-"'
+        :value='item'
+      ) {{item}}
 </template>
 <script>
 import Epage from 'epage'
@@ -44,6 +48,7 @@ export default {
     listenerMessage () {
       this.worker.onmessage = e => {
         const { message, success, data } = e.data
+
         if (success) {
           // 更新获取到的动态选项
           const { key } = this.schema
@@ -65,6 +70,7 @@ export default {
       // spf 右侧设置输入项
       const { type: dataType, data, url, adapter } = this.schema.option
       let result = []
+
       if (dataType === 'static') {
         result = data.filter(item => {
           item = item + ''

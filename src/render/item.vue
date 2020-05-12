@@ -1,28 +1,36 @@
 <template lang="pug">
 .ep-widget-item(
-  :class='cls' :style='getStyle()'
+  :class='cls'
+  :style='getStyle()'
   @click='onOriginViewSelect($event, schema)'
 )
   .ep-widget-item-name {{schema.name}}
   div(v-if='tab === "design"')
     Icon.ep-widget-btn.ep-widget-btn-delete(
-      title='删除' :type='icons.remove'
+      title='删除'
+      :type='icons.remove'
       @click.native='onOriginViewDelete($event, schema)'
     )
     Icon.ep-widget-btn.ep-widget-btn-clone(
-      title='复制' :type='icons.copy'
+      title='复制'
+      :type='icons.copy'
       @click.native='onOriginViewCopy($event, schema)'
     )
 
   template(v-if='schema.container')
     template(v-if='!schema.dynamic || tab === "design"')
-      Row(v-if='schema.option' type='flex'
+      Row(
+        v-if='schema.option'
+        type='flex'
         :gutter='schema.option.gutter'
         :align='schema.option.align'
         :justify='schema.option.justify'
       )
-        Col(v-for='(item, k) in schema.children'
-          :key='k' :span='item.span' :offset='item.offset'
+        Col(
+          v-for='(item, k) in schema.children'
+          :key='k'
+          :span='item.span'
+          :offset='item.offset'
         )
           template(v-if='Array.isArray(item.list)')
             template(v-if='tab !== "design"')
@@ -50,7 +58,8 @@
             )
               transition-group(mode='fade')
                 .ep-widget-item(
-                  v-if='item.list.length === 0' key='placeholder'
+                  v-if='item.list.length === 0'
+                  key='placeholder'
                   :class='getPlaceholderCls()'
                 )
                 template(v-else)
@@ -74,14 +83,18 @@
     template(v-else)
       div(v-for='(sub, s) in schema.list' style='position: relative;')
         Row(
-          v-if='sub.option' type='flex'
+          v-if='sub.option'
+          type='flex'
           :gutter='sub.option.gutter'
           :align='sub.option.align'
           :justify='sub.option.justify'
           :class='tab !== "design" ? "ep-widget-dynamic-container" : ""'
         )
-          Col(v-for='(item, k) in sub.children'
-            :key='k' :span='item.span' :offset='item.offset'
+          Col(
+            v-for='(item, k) in sub.children'
+            :key='k'
+            :span='item.span'
+            :offset='item.offset'
           )
             template(v-if='Array.isArray(item.list) && tab !== "design"')
               ep-widget-item(
@@ -98,11 +111,16 @@
                 @on-dynamic-remove='onDynamicRemove'
               )
         .ep-widget-description(v-if='sub.description') {{sub.description}}
-        Icon.ep-widget-dynamic-remove(title='删除' :type='icons.remove' @click.native='onOriginDynamicRemove($event, schema, s)')
+        Icon.ep-widget-dynamic-remove(
+          title='删除'
+          :type='icons.remove'
+          @click.native='onOriginDynamicRemove($event, schema, s)'
+        )
 
     Button(
       v-show='schema.dynamic'
-      type='dashed' style='margin-top: 5px;'
+      type='dashed'
+      style='margin-top: 5px;'
       :size='schema.size || rootSchema.size'
       @click='onOriginDynamicAdd($event, schema)'
     ) 添加
@@ -125,10 +143,19 @@
         @on-event='onEvent'
       )
       .ep-widget-description(v-if='schema.description') {{schema.description}}
-      Button(v-if='schema.dynamic' style='margin-top: 5px;' :size='schema.size || rootSchema.size' type='dashed') 添加
+      Button(
+        v-if='schema.dynamic'
+        style='margin-top: 5px;'
+        :size='schema.size || rootSchema.size'
+        type='dashed'
+      ) 添加
     //- dynamic widget
     template(v-else)
-      FormItem(v-if='schema.list.length===0' :class='{"ep-widget-item-fullcol": !schema.label}' :label='schema.label')
+      FormItem(
+        v-if='schema.list.length === 0'
+        :class='{"ep-widget-item-fullcol": !schema.label}'
+        :label='schema.label'
+      )
         Button(
           style='margin-top: 5px;'
           :size='schema.size || rootSchema.size'
@@ -151,9 +178,19 @@
           @on-event='onEvent'
         )
         .ep-widget-description(v-if='sc.description') {{sc.description}}
-        Icon.ep-widget-dynamic-remove(title='删除' :type='icons.remove' @click.native='onOriginDynamicRemove($event, schema, index)')
-      FormItem(v-if='schema.list.length!==0' :class='{"ep-widget-item-fullcol": !schema.label}' label=' ')
-        Button(type='dashed' style='margin-top: 5px;'
+        Icon.ep-widget-dynamic-remove(
+          title='删除'
+          :type='icons.remove'
+          @click.native='onOriginDynamicRemove($event, schema, index)'
+        )
+      FormItem(
+        v-if='schema.list.length!==0'
+        :class='{"ep-widget-item-fullcol": !schema.label}'
+        label=' '
+      )
+        Button(
+          type='dashed'
+          style='margin-top: 5px;'
           :size='schema.size || rootSchema.size'
           @click='onOriginDynamicAdd($event, schema)'
         ) 添加

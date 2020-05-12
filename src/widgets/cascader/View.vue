@@ -20,18 +20,21 @@
 <script>
 import viewExtend from '../../extends/view'
 import dynamicMixins from '../../mixins/dynamicMixins'
+
 export default {
   extends: viewExtend,
   mixins: [dynamicMixins],
   computed: {
     size () {
       const size = this.schema.size || this.rootSchema.size
+
       return size === 'default' ? undefined : size
     },
     displayValue () {
       const label = []
       const { delimiter = '/' } = this.schema.option
       const rawValue = this.model[this.schema.key]
+
       this.findFinalValue(rawValue, label, this.options)
       return label.join(delimiter)
     },
@@ -39,14 +42,20 @@ export default {
       // data 静态选项 dynamicData 动态选项
       const { type, data, dynamicData } = this.schema.option
       let result = []
-      if (type === 'static') result = data || []
-      if (type === 'dynamic') result = dynamicData || []
+
+      if (type === 'static') {
+        result = data || []
+      }
+      if (type === 'dynamic') {
+        result = dynamicData || []
+      }
       return this.formatData(JSON.parse(JSON.stringify(result)))
     }
   },
   methods: {
     renderFormat (label) {
       const delimiter = this.schema.option.delimiter || '/'
+
       return label.join(delimiter)
     },
     /**
