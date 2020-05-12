@@ -21,8 +21,9 @@
 ## 安装
 
 ```sh
-// 需提前安装vue vuex iview@2 vuedragable
+# 需提前安装vue vuex iview@2 vuedragable
 npm install epage-iview -S
+# or yarn add epage-iview
 ```
 
 ## 设计器及渲染器示例
@@ -37,14 +38,14 @@ import widgets, { Render, Epage } from 'epage-iview'
 import schema from './schema.json'
 import 'epage-iview/src/style/main.less'
 
-// 项目中已经use后不需要再次use
+// 如果项目中已经use，则此处不需要再次use
 Vue.use(Vuex)
 Vue.use(iview)
 
 const el = document.getElementById('root')
 // 设计器
 new Epage({ el, widgets, schema, Render })
-// 渲染器
+// 或者创建渲染器
 new Render({ el, widgets, schema })
 ```
 
@@ -75,7 +76,7 @@ const { default: widgets, Render } = EpageIview
 
 // 设计器
 new Epage({ el, widgets, Render })
-// 渲染器
+// 或者创建渲染器
 new Render({ el, widgets, schema })
 </script>
 
