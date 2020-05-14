@@ -1,8 +1,8 @@
 const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
-const epagePath = path.resolve(__dirname, '../node_modules/epage/src')
 
+const epagePath = path.resolve(__dirname, '../node_modules/epage/src')
 const scriptPath = [
   path.resolve(__dirname, '../src'),
   path.resolve(__dirname, '../examples'),
@@ -16,12 +16,10 @@ module.exports = {
         test: /\.vue$/,
         loader: 'vue-loader',
         include: scriptPath
-      },
-      {
+      }, {
         test: /\.pug$/,
         loader: 'pug-plain-loader'
-      },
-      {
+      }, {
         test: /\.js$/,
         loader: 'babel-loader',
         include: scriptPath,
@@ -32,7 +30,8 @@ module.exports = {
                 esmodules: true
               }
             }],
-            '@vue/babel-preset-jsx']
+            '@vue/babel-preset-jsx'
+          ]
         }
       }, {
         test: /\.css$/,

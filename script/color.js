@@ -25,9 +25,11 @@ const styles = {
   yellowBG: ['\x1B[43m', '\x1B[49m']
 }
 const color = {}
+
 Object.keys(styles).forEach(function (key) {
   color[key] = function (msg) {
     return styles[key].join(msg)
   }
 })
+
 module.exports = color

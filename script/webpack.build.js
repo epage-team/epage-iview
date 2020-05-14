@@ -1,36 +1,65 @@
 const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
-const webpackBaseConfig = require('./webpack.base.conf.js')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const webpackBaseConfig = require('./webpack.base.js')
+const pkg = require('../package.json')
+
+const banner = `epage-iview v${pkg.version}
+(c) 2020-present Chengzi
+Released under the MIT License.`
 
 const webpackConfig = merge(webpackBaseConfig, {
+  mode: 'production',
   entry: {
-    app: './examples/index.js'
+    'epage-iview': './src/main.js'
   },
   output: {
-    path: path.resolve(__dirname, '../dist-examples'),
+    path: path.resolve(__dirname, '../dist'),
     publicPath: '',
-    filename: '[name].[hash:8].js',
+    filename: '[name].min.js',
+    library: 'EpageIview',
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
+  externals: {
+    epage: {
+      root: 'Epage',
+      commonjs: 'epage',
+      commonjs2: 'epage',
+      amd: 'epage'
+    },
+    iview: 'iview',
+    vuedraggable: 'vuedraggable',
+    vue: {
+      root: 'Vue',
+      commonjs: 'vue',
+      commonjs2: 'vue',
+      amd: 'vue'
+    }
+  },
+  optimization: {
+    minimizer: [new UglifyJsPlugin({
+      parallel: true,
+      sourceMap: false,
+      uglifyOptions: {
+        ecma: 8,
+        warnings: false
+      }
+    })]
+  },
   plugins: [
     new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: path.resolve(__dirname, '../dist-examples')
+      cleanOnceBeforeBuildPatterns: path.resolve(__dirname, '../dist')
     }),
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: './examples/index.html',
-      inject: true,
-      chunksSortMode: 'dependency'
-    }),
+    new webpack.BannerPlugin(banner),
     new UglifyJsPlugin({
+      sourceMap: true,
       uglifyOptions: {
+        ecma: 8,
         warnings: false
       },
       // exclude: /\/node_modules/,
@@ -39,14 +68,17 @@ const webpackConfig = merge(webpackBaseConfig, {
     }),
     new webpack.optimize.ModuleConcatenationPlugin(),
     new ExtractTextPlugin({
-      filename: 'epage-iview.css'
+      filename: '[name].css'
     }),
     new OptimizeCSSPlugin({
       cssProcessorOptions: {
         safe: true
       }
     })
-  ]
+  ],
+  resolve: {
+    // mainFields: ['main:epage', 'main']
+  }
 })
 
 if (process.env.npm_config_report) {
