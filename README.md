@@ -82,6 +82,12 @@ new Render({ el, widgets, schema })
 
 ```
 
+## 交流群
+
+微信群
+
+![](http://img-hxy021.didistatic.com/static/star/epage-qrcode.jpg)
+
 ## License
 
 [MIT](http://opensource.org/licenses/MIT)
