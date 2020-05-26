@@ -83,6 +83,12 @@ new Render({ el, widgets, schema })
 
 ```
 
+## Communication Group
+
+Wechat group
+
+![](http://img-hxy021.didistatic.com/static/star/epage-qrcode.jpg)
+
 ## License
 
 [MIT](http://opensource.org/licenses/MIT)
