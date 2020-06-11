@@ -21,7 +21,7 @@
 ## 安装
 
 ```sh
-# 需提前安装vue vuex iview@2 vuedragable
+# 需提前安装vue vuex iview vuedragable
 npm install epage-iview -S
 # or yarn add epage-iview
 ```
