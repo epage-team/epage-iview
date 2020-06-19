@@ -83,7 +83,7 @@ export default {
     },
 
     getDynamicData: debounce((url, value, adapter, self) => {
-      ajax(`${url}${value}`).then(res => {
+      ajax(`${url}?${value}`).then(res => {
         this.worker.postMessage({
           action: 'fetch',
           data: res,

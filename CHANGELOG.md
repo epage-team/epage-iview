@@ -1,5 +1,10 @@
 # Change Log
 
+### 0.2.7（2020/06/20）
+
+- [fix] : 修复helper模块下formatDate格式化时间HH未替换问题
+- [fix] : 修复autoComplete模糊查询时，接口地址拼接错误问题
+
 ### 0.2.6（2020/06/11）
 
 - [feat] : `worker`支持`custom`类型脚本，不对结果进行校验
