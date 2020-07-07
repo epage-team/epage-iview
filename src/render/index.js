@@ -37,8 +37,6 @@ export default class Render {
     const { el, store, mode } = this
     const extension = { store, mode: option.mode || mode }
     const root = document.createElement('div')
-
-    root.setAttribute('style', 'display:block;height: 100%;')
     el.appendChild(root)
 
     return new Vue({
