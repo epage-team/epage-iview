@@ -1,6 +1,6 @@
 <template lang="pug">
 .form-demo
-  div(ref='form')
+  div.demo-container(ref='form')
   Button(type='default' @click='validateForm') 校验
   Button(type='default' @click='resetForm') 重置
   Button(type='default' @click='getFormData') getFormData

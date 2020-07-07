@@ -21,8 +21,8 @@ export const gridWidget = require('./widgets/grid')
 export const buttonWidget = require('./widgets/button')
 
 export default [{
-  title: 'Base',
-  key: 'base',
+  title: '表单',
+  key: 'iview-form',
   widgets: [
     inputWidget,
     textareaWidget,
@@ -37,9 +37,19 @@ export default [{
     switchWidget,
     rateWidget,
     uploadWidget,
-    lineWidget,
     // subTableWidget,
-    gridWidget,
     buttonWidget
+  ]
+}, {
+  title: '展示',
+  key: 'iview-display',
+  widgets: [
+    lineWidget
+  ]
+}, {
+  title: '布局',
+  key: 'iview-layout',
+  widgets: [
+    gridWidget
   ]
 }]
