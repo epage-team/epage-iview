@@ -86,7 +86,7 @@ new Render({ el, widgets, schema })
 
 微信群
 
-![](http://img-hxy021.didistatic.com/static/star/epage-qrcode02.png)
+![](https://github.com/didi/epage/raw/master/public/imgs/epage-qrcode.png)
 
 ## License
 
