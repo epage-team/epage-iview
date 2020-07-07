@@ -87,7 +87,7 @@ new Render({ el, widgets, schema })
 
 Wechat group
 
-![](http://img-hxy021.didistatic.com/static/star/epage-qrcode.jpg)
+![](http://img-hxy021.didistatic.com/static/star/epage-qrcode02.png)
 
 ## License
 
