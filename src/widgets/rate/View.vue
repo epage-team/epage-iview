@@ -1,5 +1,5 @@
 <template lang="pug">
-.ep-widget
+.ep-widget(:data-epkey='schema.key')
   template(v-if='mode === "display"')
      Rate(
       v-if='schema.key'

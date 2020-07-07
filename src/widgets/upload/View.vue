@@ -1,5 +1,5 @@
 <template lang="pug">
-.ep-widget.ep-widget-upload
+.ep-widget.ep-widget-upload(:data-epkey='schema.key')
   template(v-if='mode === "display"')
     .ep-widget-upload-files(
       v-for='(file, index) in model[schema.key]'

@@ -1,5 +1,5 @@
 <template lang="pug">
-.ep-widget.ep-widget-input
+.ep-widget.ep-widget-input(:data-epkey='schema.key')
   template(v-if='mode === "display"')
     span(v-if='schema.option.prefix') {{schema.option.prefix}}
     span {{model[schema.key]}}
