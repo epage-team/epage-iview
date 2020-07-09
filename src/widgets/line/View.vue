@@ -1,5 +1,5 @@
 <template lang="pug">
-.ep-widget(style='position: relative;height: 100%;min-height: 16px;')
+.ep-widget(style='position: relative;height: 100%;min-height: 16px;' :data-epkey='schema.key')
   .ep-widget-line(v-if='schema.key' :style='style')
 
 </template>

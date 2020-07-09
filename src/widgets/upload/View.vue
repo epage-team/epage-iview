@@ -1,11 +1,11 @@
 <template lang="pug">
-.ep-widget.ep-widget-upload
+.ep-widget.epiv-upload(:data-epkey='schema.key')
   template(v-if='mode === "display"')
-    .ep-widget-upload-files(
+    .epiv-upload-files(
       v-for='(file, index) in model[schema.key]'
       :key='"_"+index'
     )
-      a.ep-widget-upload-filename(
+      a.epiv-upload-filename(
         @click='getDownload(file.url, file.name)'
       ) {{file.name}}
 
@@ -30,9 +30,9 @@
       :on-format-error='handleUploadFormatError'
       :on-exceeded-size='handleSizeError'
     )
-      .ep-widget-upload-drag(
+      .epiv-upload-drag(
         v-if='schema.option.type === "drag"'
-        :class="`ep-widget-upload-drag-${rootSchema.size}`"
+        :class="`epiv-upload-drag-${rootSchema.size}`"
       )
         Icon(type="ios-cloud-upload")
         p 点击或拖拽文件到此上传
@@ -42,15 +42,15 @@
         icon='ios-cloud-upload-outline'
       ) {{schema.placeholder}}
     template(v-if="schema.option.showUploadList")
-      .ep-widget-upload-files(
+      .epiv-upload-files(
         v-for='(file, index) in model[schema.key]'
         :key='"_"+index'
       )
-        a.ep-widget-upload-filename(
+        a.epiv-upload-filename(
           title='点击下载'
           @click='getDownload(file.url, file.name)'
         ) {{file.name}}
-        Icon.ep-widget-upload-file-remove(
+        Icon.epiv-upload-file-remove(
           type='ios-trash-outline'
           title='删除当前文件'
           @click.native.stop='handleRemoveFile(index)'

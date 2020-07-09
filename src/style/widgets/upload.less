@@ -1,36 +1,34 @@
-.ep-widget {
-  &-upload{
-    &-files{
-      display: inline-block;
-      margin-right: 8px;
-    }
-    &-drag{
-      padding: 10px;
-      &-small{
-        .ivu-icon{
-          font-size: 36px;
-        }
-      }
-      &-default{
-        .ivu-icon{
-          font-size: 44px;
-        }
-      }
-      &-large{
-        .ivu-icon{
-          font-size: 52px;
-        }
-      }
+.@{epiv}-upload {
+  &-files{
+    display: inline-block;
+    margin-right: 8px;
+  }
+  &-drag{
+    padding: 10px;
+    &-small{
       .ivu-icon{
-        color: @primary-color;
+        font-size: 36px;
       }
     }
-    &-file-remove{
-      font-size: 14px;
-      margin-left: 4px;
-      cursor: pointer;
-      position: relative;
-      top: 2px;
+    &-default{
+      .ivu-icon{
+        font-size: 44px;
+      }
     }
+    &-large{
+      .ivu-icon{
+        font-size: 52px;
+      }
+    }
+    .ivu-icon{
+      color: @primary-color;
+    }
+  }
+  &-file-remove{
+    font-size: 14px;
+    margin-left: 4px;
+    cursor: pointer;
+    position: relative;
+    top: 2px;
   }
 }

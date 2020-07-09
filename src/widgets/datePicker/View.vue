@@ -1,5 +1,5 @@
 <template lang="pug">
-.ep-widget
+.ep-widget(:data-epkey='schema.key')
   template(v-if='mode === "display"')
     span {{model[schema.key]}}
 
@@ -35,7 +35,7 @@ export default {
       if (option && option.type === 'datetimerange') {
         const size = this.schema.size || this.rootSchema.size || 'default'
 
-        result = `ep-widget-datePicker-${size}`
+        result = `epiv-datePicker-${size}`
       }
 
       return result

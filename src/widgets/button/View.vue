@@ -1,5 +1,5 @@
 <template lang="pug">
-.ep-widget
+.ep-widget(:data-epkey='schema.key')
   Button(
     v-if='schema.key'
     :icon='schema.option.icon'

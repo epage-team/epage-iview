@@ -1,14 +1,33 @@
 import Vue from 'vue'
+import Vuex from 'vuex'
+import iview from 'iview'
 import Epage from 'epage'
 import FormRender from './index.vue'
 
-const { Store, Rule, helper } = Epage
-const { isArray, isFunction, isPlainObject } = helper
+const {
+  Store,
+  Rule,
+  helper
+} = Epage
+const {
+  isArray,
+  isFunction,
+  isPlainObject,
+  usePlugins
+} = helper
 
 export default class Render {
   constructor (option) {
-    const { el, store, widgets = [], mode, schema, Rule: CustomRule } = option
+    const {
+      el,
+      store,
+      widgets = [],
+      mode,
+      schema,
+      Rule: CustomRule
+    } = option
 
+    usePlugins(Vue, [Vuex, iview])
     this.el = el
     this.mode = mode || 'edit'
     this.$$origin = null
@@ -37,8 +56,6 @@ export default class Render {
     const { el, store, mode } = this
     const extension = { store, mode: option.mode || mode }
     const root = document.createElement('div')
-
-    root.setAttribute('style', 'display:block;height: 100%;')
     el.appendChild(root)
 
     return new Vue({

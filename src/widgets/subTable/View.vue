@@ -1,5 +1,5 @@
 <template lang="pug">
-.ep-widget
+.ep-widget(:data-epkey='schema.key')
   template(v-if='mode === "display"')
     span {{model[schema.key]}}
 
@@ -12,7 +12,7 @@
       :no-data-text='schema.placeholder'
       :columns='schema.option.columns'
     )
-    .ep-widget-subTable-page
+    .epiv-subTable-page
       Page(
         v-if='schema.option.page'
         :class='pageClass'
@@ -45,7 +45,7 @@ export default {
       if (positions.indexOf(position) > -1) {
         pos = position
       }
-      return `ep-widget-subTable-page-${pos}`
+      return `epiv-subTable-page-${pos}`
     }
   },
   mounted () {

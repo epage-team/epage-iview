@@ -1,5 +1,5 @@
 <template lang="pug">
-.ep-widget.ep-widget-input
+.ep-widget.epiv-input(:data-epkey='schema.key')
   template(v-if='mode === "display"')
     span(v-if='schema.option.prefix') {{schema.option.prefix}}
     span {{model[schema.key]}}
@@ -13,7 +13,7 @@
       :placeholder='schema.placeholder'
       :disabled='schema.disabled'
       :size='schema.size || rootSchema.size'
-      :class='{"ep-widget-input-prefix": schema.option.prefix, "ep-widget-input-suffix": schema.option.suffix}'
+      :class='{"epiv-input-prefix": schema.option.prefix, "epiv-input-suffix": schema.option.suffix}'
       @on-enter="event('on-enter', ...arguments)"
       @click.native="event('on-click', ...arguments)"
       @on-change="event('on-change', ...arguments)"

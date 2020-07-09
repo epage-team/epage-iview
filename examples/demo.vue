@@ -1,10 +1,14 @@
 <template lang="pug">
-.form-demo
-  div(ref='form')
-  Button(type='default' @click='validateForm') 校验
-  Button(type='default' @click='resetForm') 重置
-  Button(type='default' @click='getFormData') getFormData
-  //- Button(type='default' @click='getSchema') getSchema
+.demo-container
+  .demo-header
+    span.demo-title Epage演示示例
+    span.demo-btns
+      Button.demo-btn(type='primary' size='small' @click='validateForm') 校验表单
+      Button.demo-btn(type='warning' size='small' @click='resetForm') 重置表单
+      Button.demo-btn(type='info' size='small' @click='getFormData') 获取表单值
+
+  .demo-epage
+    div(ref='form')
 
 </template>
 <script>
@@ -24,7 +28,8 @@ helper.setValidators(widgets, { input: ['phone'] })
 export default {
   data () {
     return {
-      form: null
+      form: null,
+      epage: null
     }
   },
   mounted () {
@@ -33,9 +38,9 @@ export default {
     // this.formDesign()
     this.getRootSchema().then(schema => {
       // 用于 调试 编辑和设计模式
-      const epage = this.formDesign(schema)
+      this.epage = this.formDesign(schema)
       this.getModel().then(model => {
-        epage.store.updateModel(model)
+        this.epage.store.updateModel(model)
       })
 
       // // 用于 调试 渲染模式
@@ -50,35 +55,53 @@ export default {
     })
   },
   methods: {
+    checkPreview (action) {
+      const text = {
+        reset: '请在预览视图重置表单',
+        validate: '请在预览视图校验表单',
+        formdata: '请在预览视查看表单值'
+      }
+      const tab = this.epage.store.getTab()
+      if (tab !== 'preview') {
+        this.$Message.warning(text[action])
+        return false
+      }
+      return true
+    },
     validateForm (args) {
-      this.form.validateFields().then(args => {
+      if (!this.checkPreview('validate')) return
+      this.epage.$render.validateFields().then(args => {
         console.log('validate: ', args)
       })
     },
     resetForm (args) {
-      this.form.resetFields()
+      if (!this.checkPreview('reset')) return
+      this.epage.$render.resetFields()
+    },
+    getFormData () {
+      if (!this.checkPreview('formdata')) return
+      const formData = this.epage.$render.store.getFormData()
+      this.$Notice.open({
+        title: '提醒',
+        desc: '请打开开发者工具查看form data值',
+        duration: 2
+      })
+      console.log('form data: ', formData)
     },
     getRootSchema () {
       return Promise.resolve(rootSchema)
     },
     formRender (schema) {
       const el = this.$refs.form
-      // return new Render({ el, schema, widgets: myWidgets})
       return new Render({ el, schema, widgets, mode: 'display' })
-      // return this.render(el, { mode: 'edit' })
     },
     formDesign (schema) {
       const el = this.$refs.form
       // return new Epage({ el, Render })
-      const { getSchema, getFormData } = this
-      return new Epage({ el, widgets, schema, Render, getSchema, getFormData })
+      return new Epage({ el, widgets, schema, Render })
     },
     getSchema (schema) {
       console.log(1, schema)
-    },
-    getFormData (formData) {
-      console.log(2, formData)
-      // console.log(this.form.store.getFormData())
     },
     getModel () {
       return new Promise((resolve, reject) => {
@@ -113,11 +136,31 @@ export default {
 }
 </script>
 <style lang="less">
-.form-demo{
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+.demo-container {
+  .demo-header {
+    height: 50px;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 16px;
+    box-sizing: border-box;
+    .demo-title {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .demo-btns {
+      margin-left: 32px;
+      vertical-align: bottom;
+    }
+    .demo-btn{
+      margin-left: 16px;
+    }
+  }
+  .demo-epage{
+    position: fixed;
+    top: 50px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
 }
 </style>
