@@ -201,7 +201,7 @@ import Draggable from 'vuedraggable'
 import { version } from 'iview'
 
 // 兼容iview@2及iview@3图标不一致问题
-const mainVersion = parseInt(version || 2)
+const MAIN_VERSION = parseInt(version || 2)
 const IVIEW_V3 = 3
 const mapIcon2To3 = {
   'arrow-move': 'md-move',
@@ -304,7 +304,7 @@ export default {
     },
     setIcons () {
       const icons = {}
-      if (mainVersion < IVIEW_V3) return
+      if (MAIN_VERSION < IVIEW_V3) return
       if (this.icons.move in mapIcon2To3) icons.move = mapIcon2To3[this.icons.move]
       if (this.icons.copy in mapIcon2To3) icons.copy = mapIcon2To3[this.icons.copy]
       if (this.icons.remove in mapIcon2To3) icons.remove = mapIcon2To3[this.icons.remove]
