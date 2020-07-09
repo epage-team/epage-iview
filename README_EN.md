@@ -21,7 +21,6 @@ Official website：[http://epage.didichuxing.com](http://epage.didichuxing.com)
 ## Install
 
 ```sh
-# install vue vuex iview vuedraggable in advance
 npm install epage-iview -S
 # or yarn add epage-iview
 ```
@@ -31,16 +30,9 @@ npm install epage-iview -S
 -  `npm` (recommend)
 
 ```js
-import Vue from 'vue'
-import Vuex from 'vuex'
-import iview from 'iview'
 import widgets, { Render, Epage } from 'epage-iview'
 import schema from './schema.json'
 import 'epage-iview/src/style/main.less'
-
-// if already used in the project, don't use it here
-Vue.use(Vuex)
-Vue.use(iview)
 
 const el = document.getElementById('root')
 // Instantiate Designer
@@ -54,7 +46,6 @@ new Render({ el, widgets, schema })
 ```html
 <!-- third-party style -->
 <link href='https://cdn.bootcss.com/iview/3.5.1/styles/iview.css' rel='stylesheet'></link>
-<link href='./epage.css' rel='stylesheet'></link>
 <link href='./epage-iview.css' rel='stylesheet'></link>
 
 <!-- third lib -->
@@ -69,8 +60,6 @@ new Render({ el, widgets, schema })
 <script src="./epage-iview.min.js"></script>
 
 <script>
-Vue.use(Vuex)
-Vue.use(iview)
 
 const el = document.getElementById('root')
 const { default: widgets, Render } = EpageIview

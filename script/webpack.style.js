@@ -8,7 +8,7 @@ const webpackBaseConfig = require('./webpack.base.js')
 const webpackConfig = merge(webpackBaseConfig, {
   mode: 'production',
   entry: {
-    'epage-iview': './src/style/render.less'
+    'epage-iview': './src/style/main.less'
   },
   output: {
     path: path.resolve(__dirname, '../dist'),

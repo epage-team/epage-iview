@@ -21,7 +21,6 @@
 ## 安装
 
 ```sh
-# 需提前安装vue vuex iview vuedraggable
 npm install epage-iview -S
 # or yarn add epage-iview
 ```
@@ -31,16 +30,9 @@ npm install epage-iview -S
 -  `npm` 方式引入（推荐）
 
 ```js
-import Vue from 'vue'
-import Vuex from 'vuex'
-import iview from 'iview'
 import widgets, { Render, Epage } from 'epage-iview'
 import schema from './schema.json'
 import 'epage-iview/src/style/main.less'
-
-// 如果项目中已经use，则此处不需要再次use
-Vue.use(Vuex)
-Vue.use(iview)
 
 const el = document.getElementById('root')
 // 设计器
@@ -54,7 +46,6 @@ new Render({ el, widgets, schema })
 ```html
 <!-- 样式 -->
 <link href='https://cdn.bootcss.com/iview/3.5.1/styles/iview.css' rel='stylesheet'></link>
-<link href='./epage.css' rel='stylesheet'></link>
 <link href='./epage-iview.css' rel='stylesheet'></link>
 
 <!-- 第三方脚本 -->
@@ -69,8 +60,6 @@ new Render({ el, widgets, schema })
 <script src="./epage-iview.min.js"></script>
 
 <script>
-Vue.use(Vuex)
-Vue.use(iview)
 const el = document.getElementById('root')
 const { default: widgets, Render } = EpageIview
 

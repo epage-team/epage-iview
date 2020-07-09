@@ -1,5 +1,12 @@
 # Change Log
 
+### 0.3.0（2020/07/09）
+
+- [feat] : 重构设计器工具栏，分类方式展示
+- [feat] : 重构底层依赖，由原先`epage`拆分成`epage`（设计器管理界面）、`epage-core`(设计器及渲染器核心模块)
+- [feat] : 依赖项变更，安装本库时自动安装`epage`、`epage-core`、`vue`、`vuex`、`iview`等
+- [feat] : 基础widget原生dom添加`data-epkey`属性，值为`schema.key`，用于特定场景下操作dom需求
+
 ### 0.2.7（2020/06/20）
 
 - [fix] : 修复helper模块下formatDate格式化时间HH未替换问题

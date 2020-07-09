@@ -40,6 +40,12 @@ const webpackConfig = merge(webpackBaseConfig, {
     },
     iview: 'iview',
     vuedraggable: 'vuedraggable',
+    vuex: {
+      root: 'Vuex',
+      commonjs: 'vuex',
+      commonjs2: 'vuex',
+      amd: 'vuex'
+    },
     vue: {
       root: 'Vue',
       commonjs: 'vue',

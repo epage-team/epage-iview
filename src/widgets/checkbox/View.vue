@@ -28,7 +28,7 @@ export default {
   computed: {
     cls () {
       return {
-        'ep-widget-checkbox-vertical': this.schema.option.direction === 'vertical'
+        'epiv-checkbox-vertical': this.schema.option.direction === 'vertical'
       }
     },
     displayValue () {
