@@ -13,9 +13,8 @@
 </template>
 <script>
 import widgets, { Render, Epage } from 'epage-iview'
-// import * as richText from './widgets/richText'
 import * as myRules from './rules'
-import rootSchema from './schema.json'
+import schema from './schema.json'
 
 const { Rule, helper } = Epage
 
@@ -28,31 +27,21 @@ helper.setValidators(widgets, { input: ['phone'] })
 export default {
   data () {
     return {
-      form: null,
-      epage: null
+      epage: null,
+      render: null,
+      model: {
+        k17U0aTQ4: '这是关键字'
+      }
     }
   },
   mounted () {
-    // 基于dom渲染表单
-    // this.formRender()
-    // this.formDesign()
-    this.getRootSchema().then(schema => {
-      // 用于 调试 编辑和设计模式
-      this.epage = this.formDesign(schema)
-      this.getModel().then(model => {
-        this.epage.store.updateModel(model)
-      })
-
-      // // 用于 调试 渲染模式
-      // const form = this.formRender(schema)
-      // this.form = form
-      // this.getModel()
-      //   .then(model => {
-      //     console.log(423, model)
-      //     form.store.updateModel(model)
-      //   })
-      // this.listenerForm(form)
-    })
+    const el = this.$refs.form
+    // 设计器
+    this.epage = new Epage({ el, widgets, schema, Render })
+    this.epage.$render.store.updateModel(this.model)
+    // 渲染默认编辑模式
+    // this.render = new Render({ el, widgets, schema })
+    // this.render.store.updateModel(this.model)
   },
   methods: {
     checkPreview (action) {
@@ -88,49 +77,16 @@ export default {
       })
       console.log('form data: ', formData)
     },
-    getRootSchema () {
-      return Promise.resolve(rootSchema)
-    },
-    formRender (schema) {
-      const el = this.$refs.form
-      return new Render({ el, schema, widgets, mode: 'display' })
-    },
-    formDesign (schema) {
-      const el = this.$refs.form
-      // return new Epage({ el, Render })
-      return new Epage({ el, widgets, schema, Render })
-    },
-    getSchema (schema) {
-      console.log(1, schema)
-    },
-    getModel () {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          const model = {
-            k2xzhr4ry: 'Karen Davis',
-            kGZLAx3Vx: '讷讷呢',
-            kZwV49N9y: 2,
-            kdNpYtQt5: ['A'],
-            kFTWtRmbd: 'A',
-            k4Yvnwqbl: '12',
-            kb82OHIBH: ''
-          }
-          resolve(model)
-        }, 1000)
-      })
-    },
     listenerForm (form) {
+      // 添加监听
       form
         .on('k17U0aTQ4', 'change', e => {
           console.log(e.target.value, 9999)
         })
-        .on('k17U0aTQ4', 'enter', e => {
-          console.log(e.target.value, 'enter')
-        })
-        .on('w1552011657389', 'change', e => {
-          console.log('chagne: ', e.target.value)
-        })
-        .off('w1552011619728', 'change')
+        // .off('k17U0aTQ4', 'change')
+    },
+    saveForm (schema) {
+      console.log('schema: ', schema)
     }
   }
 }

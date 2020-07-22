@@ -2,7 +2,11 @@
   "key": "kuLlthRrI",
   "widget": "grid",
   "hidden": false,
-  "option": {},
+  "option": {
+    "gutter": 0,
+    "align": "top",
+    "justify": "start"
+  },
   "label": {
     "width": 80,
     "position": "right",
@@ -13,11 +17,39 @@
     {
       "span": 24,
       "list": [
+        {
+          "key": "kAenMN1DX",
+          "widget": "input",
+          "hidden": false,
+          "option": {
+            "password": false,
+            "prefix": "",
+            "suffix": ""
+          },
+          "name": "name",
+          "type": "string",
+          "label": "姓名",
+          "description": "",
+          "help": "",
+          "disabled": false,
+          "rules": [
+            {
+              "required": false,
+              "message": "必填",
+              "type": "string",
+              "trigger": "blur"
+            }
+          ],
+          "placeholder": "请输入"
+        }
       ]
     }
   ],
   "title": "测试",
   "description": "",
   "size": "default",
-  "logics": []
+  "logics": [],
+  "style": {
+    "max-width": "1600px"
+  }
 }
