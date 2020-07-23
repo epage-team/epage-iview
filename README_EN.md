@@ -74,9 +74,9 @@ new Render({ el, widgets, schema })
 
 ## Communication Group
 
-Wechat group
+QQ group
 
-![](https://github.com/didi/epage/raw/master/public/imgs/epage-qrcode.png)
+<img src="https://img-hxy021.didistatic.com/static/star/epage-qrcode-qq.png" width="250">
 
 ## License
 
