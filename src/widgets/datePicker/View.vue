@@ -1,5 +1,5 @@
 <template lang="pug">
-.ep-widget(:data-epkey='schema.key')
+.ep-widget.epiv-datePicker(:data-epkey='schema.key')
   template(v-if='mode === "display"')
     span {{model[schema.key]}}
 
@@ -7,7 +7,6 @@
     DatePicker(
       v-if='schema.key'
       :transfer='true'
-      :class='cls'
       :disabled='schema.disabled'
       :placeholder='schema.placeholder'
       :size='schema.size || rootSchema.size'
@@ -27,20 +26,6 @@ const monthOptions = ['yyyy-MM', 'yyyy/MM']
 
 export default {
   extends: viewExtend,
-  computed: {
-    cls () {
-      let result = {}
-      const { option } = this.schema
-
-      if (option && option.type === 'datetimerange') {
-        const size = this.schema.size || this.rootSchema.size || 'default'
-
-        result = `epiv-datePicker-${size}`
-      }
-
-      return result
-    }
-  },
   methods: {
     onDateChange (value) {
       const newValue = value
