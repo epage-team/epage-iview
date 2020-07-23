@@ -1,5 +1,5 @@
 <template lang="pug">
-.ep-widget(:data-epkey='schema.key')
+.ep-widget.epiv-timePicker(:data-epkey='schema.key')
   template(v-if='mode === "display"')
     span {{model[schema.key]}}
 

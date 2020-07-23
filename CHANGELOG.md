@@ -1,5 +1,10 @@
 # Change Log
 
+### 0.3.2（2020/07/23）
+
+- [fix] : 修复`inputNumber`、`timePicker`、`datePicker`宽度未通栏自适应问题
+
+
 ### 0.3.1（2020/07/22）
 
 - [feat] : 设计时增加有页面配置属性
