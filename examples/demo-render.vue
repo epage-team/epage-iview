@@ -27,7 +27,7 @@ helper.setValidators(widgets, { input: ['phone'] })
 export default {
   data () {
     return {
-      epage: {},
+      render: {},
       model: {
         kAenMN1DX: '这是关键字'
       }
@@ -35,37 +35,22 @@ export default {
   },
   mounted () {
     const el = this.$refs.form
-    // 设计器
-    this.epage = new Epage({ el, widgets, schema, Render })
-    this.epage.$render.store.updateModel(this.model)
+    // 渲染默认编辑模式
+    this.render = new Render({ el, widgets, schema })
+    this.render.store.updateModel(this.model)
+    this.listenerForm()
   },
   methods: {
-    checkPreview (action) {
-      const text = {
-        reset: '请在预览视图重置表单',
-        validate: '请在预览视图校验表单',
-        formdata: '请在预览视查看表单值'
-      }
-      const tab = this.epage.store.getTab()
-      if (tab !== 'preview') {
-        this.$Message.warning(text[action])
-        return false
-      }
-      return true
-    },
-    validateForm (args) {
-      if (!this.checkPreview('validate')) return
-      this.epage.$render.validateFields().then(args => {
+    validateForm () {
+      this.render.validateFields().then(args => {
         console.log('validate: ', args)
       })
     },
-    resetForm (args) {
-      if (!this.checkPreview('reset')) return
-      this.epage.$render.resetFields()
+    resetForm () {
+      this.render.resetFields()
     },
     getFormData () {
-      if (!this.checkPreview('formdata')) return
-      const formData = this.epage.$render.store.getFormData()
+      const formData = this.render.store.getFormData()
       this.$Notice.open({
         title: '提醒',
         desc: '请打开开发者工具查看form data值',
@@ -73,9 +58,9 @@ export default {
       })
       console.log('form data: ', formData)
     },
-    listenerForm (form) {
+    listenerForm () {
       // 添加监听
-      form
+      this.render
         .on('kAenMN1DX', 'change', e => {
           console.log(e.target.value, 9999)
         })

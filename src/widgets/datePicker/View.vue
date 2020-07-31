@@ -28,11 +28,11 @@ export default {
   extends: viewExtend,
   methods: {
     onDateChange (value) {
+      const { key } = this.schema
       const newValue = value
-      const oldValue = this.store.getModel(this.schema.key)
-
+      const oldValue = this.store.getModel(key)
       if (newValue !== oldValue) {
-        this.store.updateModel({ [this.schema.key]: newValue })
+        this.store.updateModel({ [key]: newValue })
         this.event('on-change', ...arguments)
       }
     },
