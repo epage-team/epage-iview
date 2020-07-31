@@ -40,7 +40,32 @@
               "trigger": "blur"
             }
           ],
-          "placeholder": "请输入"
+          "placeholder": "请输入",
+          "default": "default"
+        },
+        {
+          "key": "kDyFz3X9G",
+          "widget": "datePicker",
+          "hidden": false,
+          "option": {
+            "range": false,
+            "format": "yyyy-MM-dd"
+          },
+          "name": "kDyFz3X9G",
+          "type": "string",
+          "label": "日期",
+          "description": "",
+          "help": "",
+          "disabled": false,
+          "rules": [
+            {
+              "required": true,
+              "message": "必填",
+              "trigger": "change"
+            }
+          ],
+          "placeholder": "请选择",
+          "default": ""
         }
       ]
     }
@@ -50,6 +75,20 @@
   "size": "default",
   "logics": [],
   "style": {
-    "max-width": "1600px"
+    "margin-top": "0%",
+    "margin-right": "auto",
+    "margin-bottom": "0%",
+    "margin-left": "auto",
+    "padding-top": "0%",
+    "padding-right": "0%",
+    "padding-bottom": "0%",
+    "padding-left": "0%",
+    "background-color": "",
+    "background-image": "",
+    "background-size": "",
+    "background-repeat": "",
+    "background-position": "",
+    "max-width": "1600px",
+    "min-width": "800px"
   }
 }

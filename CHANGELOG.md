@@ -1,5 +1,10 @@
 # Change Log
 
+### 0.3.3（2020/08/01）
+
+- [feat] : 增加基础widget默认值
+- [feat] : button增加自定义脚本
+
 ### 0.3.2（2020/07/23）
 
 - [fix] : 修复`inputNumber`、`timePicker`、`datePicker`宽度未通栏自适应问题
