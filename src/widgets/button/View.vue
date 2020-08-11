@@ -14,9 +14,9 @@
   ) {{schema.option.text}}
 </template>
 <script>
+import { Context, Script } from 'epage-core'
 import viewExtend from '../../extends/view'
 import { version } from 'iview'
-import Context from '../../util/Context'
 
 const IVIEW_V3 = 3
 const mainVersion = parseInt(version || 2)
@@ -52,6 +52,7 @@ export default {
     onClick () {
       const { script } = this.schema.option
       const { store, $el } = this
+
       const ctx = new Context({
         $el,
         $render: this.$root.$options.extension.$render,
@@ -61,14 +62,8 @@ export default {
           loading: this.loading
         }
       })
-
-      try {
-        /* eslint-disable no-new-func */
-        const fun = new Function('ctx', script)
-        fun(ctx)
-      } catch (e) {
-        console.log(e)
-      }
+      const sc = new Script(ctx)
+      sc.exec(script)
       this.event('on-click', ...arguments)
     }
   }
