@@ -1,5 +1,9 @@
 # Change Log
 
+### 0.3.4（2020/08/11）
+
+- [feat] : 替换`Button`自定义脚本实现，使用`epage`的`Context`及`Script`
+
 ### 0.3.3（2020/08/01）
 
 - [feat] : 增加基础widget默认值
