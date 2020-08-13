@@ -1,6 +1,6 @@
 {
   "name": "epage-iview",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "epage render package based on iview component library",
   "author": "Chengzi <ttghost@126.com>",
   "main": "./dist/epage-iview.min.js",
@@ -46,9 +46,9 @@
     "not ie <= 8"
   ],
   "dependencies": {
-    "epage": "^0.3.4",
-    "vue": "^2.5.16",
+    "epage": "^0.3.5",
     "iview": "^2.13.0",
+    "vue": "^2.5.16",
     "vuedraggable": "^2.20.0",
     "vuex": "^3.1"
   },
@@ -88,6 +88,7 @@
     "uglifyjs-webpack-plugin": "^1.0.0-rc.0",
     "url-loader": "^1.1.2",
     "vue-loader": "15.7.0",
+    "vue-router": "^3.4.3",
     "vue-template-compiler": "^2.5.16",
     "webpack": "^4.35.2",
     "webpack-bundle-analyzer": "^3.3.2",
