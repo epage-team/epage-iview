@@ -1,9 +1,10 @@
 {
   "name": "epage-iview",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "epage render package based on iview component library",
   "author": "Chengzi <ttghost@126.com>",
   "main": "./dist/epage-iview.min.js",
+  "main:epage": "./src/main.js",
   "scripts": {
     "start": "npm run dev",
     "dev": "webpack-dev-server --config script/webpack.dev.js",
@@ -46,7 +47,7 @@
     "not ie <= 8"
   ],
   "dependencies": {
-    "epage": "^0.3.5",
+    "epage": "^0.3.6",
     "iview": "^2.13.0",
     "vue": "^2.5.16",
     "vuedraggable": "^2.20.0",
