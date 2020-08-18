@@ -88,7 +88,7 @@
     "background-size": "",
     "background-repeat": "",
     "background-position": "",
-    "max-width": "1600px",
-    "min-width": "800px"
+    "max-width": "",
+    "min-width": ""
   }
 }
