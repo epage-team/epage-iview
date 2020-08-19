@@ -17,56 +17,6 @@
     {
       "span": 24,
       "list": [
-        {
-          "key": "kAenMN1DX",
-          "widget": "input",
-          "hidden": false,
-          "option": {
-            "password": false,
-            "prefix": "",
-            "suffix": ""
-          },
-          "name": "name",
-          "type": "string",
-          "label": "姓名",
-          "description": "",
-          "help": "",
-          "disabled": false,
-          "rules": [
-            {
-              "required": false,
-              "message": "必填",
-              "type": "string",
-              "trigger": "blur"
-            }
-          ],
-          "placeholder": "请输入",
-          "default": "default"
-        },
-        {
-          "key": "kDyFz3X9G",
-          "widget": "datePicker",
-          "hidden": false,
-          "option": {
-            "range": false,
-            "format": "yyyy-MM-dd"
-          },
-          "name": "kDyFz3X9G",
-          "type": "string",
-          "label": "日期",
-          "description": "",
-          "help": "",
-          "disabled": false,
-          "rules": [
-            {
-              "required": true,
-              "message": "必填",
-              "trigger": "change"
-            }
-          ],
-          "placeholder": "请选择",
-          "default": ""
-        }
       ]
     }
   ],

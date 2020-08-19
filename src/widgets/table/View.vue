@@ -12,7 +12,7 @@
       :no-data-text='schema.placeholder'
       :columns='schema.option.columns'
     )
-    .epiv-subTable-page
+    .epiv-table-page
       Page(
         v-if='schema.option.page'
         :class='pageClass'
@@ -56,8 +56,12 @@ export default {
   methods: {
     tableData () {
       const { page = {}, dynamicData } = this.schema.option
-
-      return dynamicData.slice(0, page.size)
+      const tab = this.store.getTab()
+      let result = []
+      if (tab !== 'design') {
+        result = dynamicData.slice(0, page.size)
+      }
+      return result
     },
 
     listenerMessage () {

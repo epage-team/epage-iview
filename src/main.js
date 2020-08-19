@@ -16,7 +16,7 @@ export const switchWidget = require('./widgets/switch')
 export const rateWidget = require('./widgets/rate')
 export const uploadWidget = require('./widgets/upload')
 export const lineWidget = require('./widgets/line')
-// export const subTableWidget = require('./widgets/subTable')
+// export const tableWidget = require('./widgets/table')
 export const gridWidget = require('./widgets/grid')
 export const buttonWidget = require('./widgets/button')
 
@@ -37,7 +37,6 @@ export default [{
     switchWidget,
     rateWidget,
     uploadWidget,
-    // subTableWidget,
     buttonWidget
   ]
 }, {
@@ -45,6 +44,7 @@ export default [{
   key: 'iview-display',
   widgets: [
     lineWidget
+    // tableWidget,
   ]
 }, {
   title: '布局',
