@@ -45,7 +45,7 @@ export default {
       if (positions.indexOf(position) > -1) {
         pos = position
       }
-      return `epiv-subTable-page-${pos}`
+      return `epiv-table-page-${pos}`
     }
   },
   mounted () {
