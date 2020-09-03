@@ -7,10 +7,9 @@
     Table(
       :data='tableData()'
       :stripe='schema.option.stripe'
-      :show-header='schema.option.showHeader'
       :size='schema.size || rootSchema.size'
-      :no-data-text='schema.placeholder'
-      :columns='schema.option.columns'
+      :no-data-text='schema.option.noDataText'
+      :columns='getColumns()'
     )
     .epiv-table-page
       Page(
@@ -54,6 +53,22 @@ export default {
     this.getDynamicData()
   },
   methods: {
+    getColumns () {
+      const columns = this.schema.option.columns || []
+      const result = columns.map(col => {
+        col.render = 'return params.row.name'
+        const newCol = { ...col }
+        if (!('render' in newCol)) return newCol
+        if (!newCol.render) {
+          newCol.render = undefined
+        } else {
+          /* eslint-disable no-new-func */
+          newCol.render = new Function('h', 'params', newCol.render)
+        }
+        return newCol
+      })
+      return [...result]
+    },
     tableData () {
       const { page = {}, dynamicData } = this.schema.option
       const tab = this.store.getTab()

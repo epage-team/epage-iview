@@ -16,7 +16,7 @@ export const switchWidget = require('./widgets/switch')
 export const rateWidget = require('./widgets/rate')
 export const uploadWidget = require('./widgets/upload')
 export const lineWidget = require('./widgets/line')
-export const tableWidget = require('./widgets/table')
+// export const tableWidget = require('./widgets/table')
 export const gridWidget = require('./widgets/grid')
 export const buttonWidget = require('./widgets/button')
 
@@ -43,7 +43,7 @@ export default [{
   title: '展示',
   key: 'iview-display',
   widgets: [
-    tableWidget,
+    // tableWidget,
     lineWidget
   ]
 }, {
