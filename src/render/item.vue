@@ -66,7 +66,6 @@
                   ep-widget-item(
                     v-for='(child, j) in item.list'
                     :key='child.key'
-                    v-show='!child.hidden'
                     :schema='child'
                     :flat-widgets='flatWidgets'
                     :flat-schemas='flatSchemas'
@@ -104,7 +103,6 @@
                 :flat-widgets='flatWidgets'
                 :flat-schemas='flatSchemas'
                 :root-schema='rootSchema'
-                v-show='!child.hidden'
                 @on-add='onViewAdd'
                 @on-event='onEvent'
                 @on-dynamic-add='onDynamicAdd'
@@ -297,9 +295,10 @@ export default {
       this.$emit('on-add', schema)
     },
     getStyle () {
-      const { style } = this.schema
-      let result
+      const { style, hidden } = this.schema
+      let result = ''
       if (style) result = Object.keys(style).filter(_ => style[_]).map(attr => `${attr}: ${style[attr]};`).join('')
+      if (this.store.getTab() === 'design' && hidden) result += 'opacity: 0.7;'
       return result
     },
     setIcons () {

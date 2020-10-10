@@ -17,13 +17,103 @@
     {
       "span": 24,
       "list": [
+        {
+          "key": "kB1mKTnek",
+          "widget": "radio",
+          "hidden": false,
+          "option": {
+            "type": "static",
+            "direction": "horizontal",
+            "url": "",
+            "adapter": "return data",
+            "data": [
+              {
+                "key": "hide",
+                "value": "hide"
+              },
+              {
+                "key": "show",
+                "value": "show"
+              },
+              {
+                "key": "unknow",
+                "value": "unknow"
+              }
+            ],
+            "dynamicData": []
+          },
+          "name": "kB1mKTnek",
+          "type": "string",
+          "label": "显隐",
+          "description": "",
+          "help": "",
+          "disabled": false,
+          "rules": [
+            {
+              "required": false,
+              "message": "必填",
+              "type": "string",
+              "trigger": "change"
+            }
+          ],
+          "placeholder": "请选择",
+          "default": ""
+        },
+        {
+          "key": "kASJAJwRB",
+          "widget": "input",
+          "hidden": false,
+          "option": {
+            "password": false,
+            "prefix": "",
+            "suffix": ""
+          },
+          "name": "kASJAJwRB",
+          "type": "string",
+          "label": "输入框",
+          "description": "",
+          "help": "",
+          "disabled": false,
+          "rules": [
+            {
+              "required": false,
+              "message": "必填",
+              "type": "string",
+              "trigger": "blur"
+            }
+          ],
+          "placeholder": "请输入",
+          "default": ""
+        }
       ]
     }
   ],
   "title": "测试",
   "description": "",
   "size": "default",
-  "logics": [],
+  "logics": [
+    {
+      "type": "value",
+      "key": "kB1mKTnek",
+      "action": "=",
+      "value": "hide",
+      "effects": [
+        {
+          "key": "kASJAJwRB",
+          "properties": [
+            {
+              "key": "hidden",
+              "value": true
+            },
+            {
+              "key": "disabled",
+              "value": false
+            }
+          ]
+        }
+      ]
+    }
+  ],
   "style": {
     "margin-top": "0%",
     "margin-right": "auto",

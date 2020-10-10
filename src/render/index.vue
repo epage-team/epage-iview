@@ -34,7 +34,6 @@ Form.ep-widget-form(
     transition-group
       ep-widget-item(
         v-for='(item, k) in childrenSchema'
-        v-show='!item.hidden'
         :key='item.key'
         :schema='item'
         :flat-widgets='flatWidgets'
