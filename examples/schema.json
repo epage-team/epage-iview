@@ -18,7 +18,49 @@
       "span": 24,
       "list": [
         {
-          "key": "kAenMN1DX",
+          "key": "kB1mKTnek",
+          "widget": "radio",
+          "hidden": false,
+          "option": {
+            "type": "static",
+            "direction": "horizontal",
+            "url": "",
+            "adapter": "return data",
+            "data": [
+              {
+                "key": "hide",
+                "value": "hide"
+              },
+              {
+                "key": "hide2",
+                "value": "hide2"
+              },
+              {
+                "key": "unknow",
+                "value": "unknow"
+              }
+            ],
+            "dynamicData": []
+          },
+          "name": "kB1mKTnek",
+          "type": "string",
+          "label": "显隐",
+          "description": "",
+          "help": "",
+          "disabled": false,
+          "rules": [
+            {
+              "required": false,
+              "message": "必填",
+              "type": "string",
+              "trigger": "change"
+            }
+          ],
+          "placeholder": "请选择",
+          "default": ""
+        },
+        {
+          "key": "kASJAJwRB",
           "widget": "input",
           "hidden": false,
           "option": {
@@ -26,9 +68,9 @@
             "prefix": "",
             "suffix": ""
           },
-          "name": "name",
+          "name": "kASJAJwRB",
           "type": "string",
-          "label": "姓名",
+          "label": "输入框",
           "description": "",
           "help": "",
           "disabled": false,
@@ -41,30 +83,6 @@
             }
           ],
           "placeholder": "请输入",
-          "default": "default"
-        },
-        {
-          "key": "kDyFz3X9G",
-          "widget": "datePicker",
-          "hidden": false,
-          "option": {
-            "range": false,
-            "format": "yyyy-MM-dd"
-          },
-          "name": "kDyFz3X9G",
-          "type": "string",
-          "label": "日期",
-          "description": "",
-          "help": "",
-          "disabled": false,
-          "rules": [
-            {
-              "required": true,
-              "message": "必填",
-              "trigger": "change"
-            }
-          ],
-          "placeholder": "请选择",
           "default": ""
         }
       ]
@@ -73,7 +91,50 @@
   "title": "测试",
   "description": "",
   "size": "default",
-  "logics": [],
+  "logics": [
+    {
+      "type": "value",
+      "key": "kB1mKTnek",
+      "action": "=",
+      "value": "hide",
+      "effects": [
+        {
+          "key": "kASJAJwRB",
+          "properties": [
+            {
+              "key": "hidden",
+              "value": true
+            },
+            {
+              "key": "disabled",
+              "value": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "value",
+      "key": "kB1mKTnek",
+      "action": "=",
+      "value": "hide2",
+      "effects": [
+        {
+          "key": "kASJAJwRB",
+          "properties": [
+            {
+              "key": "hidden",
+              "value": true
+            },
+            {
+              "key": "disabled",
+              "value": false
+            }
+          ]
+        }
+      ]
+    }
+  ],
   "style": {
     "margin-top": "0%",
     "margin-right": "auto",

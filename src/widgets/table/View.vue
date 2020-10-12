@@ -7,12 +7,11 @@
     Table(
       :data='tableData()'
       :stripe='schema.option.stripe'
-      :show-header='schema.option.showHeader'
       :size='schema.size || rootSchema.size'
-      :no-data-text='schema.placeholder'
-      :columns='schema.option.columns'
+      :no-data-text='schema.option.noDataText'
+      :columns='getColumns()'
     )
-    .epiv-subTable-page
+    .epiv-table-page
       Page(
         v-if='schema.option.page'
         :class='pageClass'
@@ -45,7 +44,7 @@ export default {
       if (positions.indexOf(position) > -1) {
         pos = position
       }
-      return `epiv-subTable-page-${pos}`
+      return `epiv-table-page-${pos}`
     }
   },
   mounted () {
@@ -54,10 +53,30 @@ export default {
     this.getDynamicData()
   },
   methods: {
+    getColumns () {
+      const columns = this.schema.option.columns || []
+      const result = columns.map(col => {
+        col.render = 'return params.row.name'
+        const newCol = { ...col }
+        if (!('render' in newCol)) return newCol
+        if (!newCol.render) {
+          newCol.render = undefined
+        } else {
+          /* eslint-disable no-new-func */
+          newCol.render = new Function('h', 'params', newCol.render)
+        }
+        return newCol
+      })
+      return [...result]
+    },
     tableData () {
       const { page = {}, dynamicData } = this.schema.option
-
-      return dynamicData.slice(0, page.size)
+      const tab = this.store.getTab()
+      let result = []
+      if (tab !== 'design') {
+        result = dynamicData.slice(0, page.size)
+      }
+      return result
     },
 
     listenerMessage () {

@@ -34,7 +34,6 @@ Form.ep-widget-form(
     transition-group
       ep-widget-item(
         v-for='(item, k) in childrenSchema'
-        v-show='!item.hidden'
         :key='item.key'
         :schema='item'
         :flat-widgets='flatWidgets'
@@ -49,9 +48,10 @@ Form.ep-widget-form(
       )
 </template>
 <script>
-import EpWidgetItem from './item'
+import { Context, Script } from 'epage-core'
 import Epage from 'epage'
 import Draggable from 'vuedraggable'
+import EpWidgetItem from './item'
 
 const { helper } = Epage
 const evt = new Epage.Event()
@@ -174,9 +174,23 @@ export default {
 
     changeWithModel (modelDiffs) {
       const valueLogics = this.rootSchema.logics.filter(logic => logic.key && logic.type === 'value')
+      const { store, $el } = this
+      const ctx = new Context({
+        $el,
+        $render: this.$root.$options.extension.$render,
+        store,
+        instance: this,
+        state: {}
+      })
+      function callback (scripts) {
+        scripts.forEach(script => {
+          const sc = new Script(ctx)
+          sc.exec(script)
+        })
+      }
 
       if (valueLogics.length) {
-        this.store.updateWidgetByModel(modelDiffs)
+        this.store.updateWidgetByModel(modelDiffs, callback)
       }
     },
 
