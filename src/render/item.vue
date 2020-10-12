@@ -195,6 +195,7 @@
 
 </template>
 <script>
+import { Context, Script } from 'epage-core'
 import Draggable from 'vuedraggable'
 import { version } from 'iview'
 
@@ -340,8 +341,22 @@ export default {
         logic => (logic.key &&
         logic.key === this.schema.key &&
         logic.type === 'event'))
+      const { store, $el } = this
+      const ctx = new Context({
+        $el,
+        $render: this.$root.$options.extension.$render,
+        store,
+        instance: this,
+        state: {}
+      })
+      function callback (scripts) {
+        scripts.forEach(script => {
+          const sc = new Script(ctx)
+          sc.exec(script)
+        })
+      }
       if (valueLogics.length) {
-        this.store.updateWidgetByEvent(this.schema.key, eventType)
+        this.store.updateWidgetByEvent(this.schema.key, eventType, callback)
       }
     }
   }

@@ -32,8 +32,8 @@
                 "value": "hide"
               },
               {
-                "key": "show",
-                "value": "show"
+                "key": "hide2",
+                "value": "hide2"
               },
               {
                 "key": "unknow",
@@ -97,6 +97,27 @@
       "key": "kB1mKTnek",
       "action": "=",
       "value": "hide",
+      "effects": [
+        {
+          "key": "kASJAJwRB",
+          "properties": [
+            {
+              "key": "hidden",
+              "value": true
+            },
+            {
+              "key": "disabled",
+              "value": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "value",
+      "key": "kB1mKTnek",
+      "action": "=",
+      "value": "hide2",
       "effects": [
         {
           "key": "kASJAJwRB",
