@@ -12,7 +12,7 @@
       clearable
       transfer
       :size='size'
-      v-model.trim='model[schema.key]'
+      v-model='model[schema.key]'
       :render-format='renderFormat'
       @on-change="event('on-change', ...arguments)"
     )
@@ -41,6 +41,8 @@ export default {
     options () {
       // data 静态选项 dynamicData 动态选项
       const { type, data, dynamicData } = this.schema.option
+      const valueType = this.resolveArrayType(this.schema.type)
+
       let result = []
 
       if (type === 'static') {
@@ -49,10 +51,16 @@ export default {
       if (type === 'dynamic') {
         result = dynamicData || []
       }
-      return this.formatData(JSON.parse(JSON.stringify(result)))
+      return this.formatData(JSON.parse(JSON.stringify(result)), valueType)
     }
   },
   methods: {
+    resolveArrayType (type) {
+      const matched = (type || '').match(/^array(?:<(.+)>)?/)
+      if (matched && matched[1]) {
+        return matched[1]
+      }
+    },
     renderFormat (label) {
       const delimiter = this.schema.option.delimiter || '/'
 
@@ -77,21 +85,25 @@ export default {
     /**
      * 将数据形式kv转化为lv形式
      */
-    formatData (source = []) {
-      const labelAlias = 'value'
-      const valueAlias = 'key'
-      const keyMap = { [labelAlias]: 'label', [valueAlias]: 'value' }
+    formatData (source = [], type) {
+      const result = []
       for (const item of source) {
-        for (const key in keyMap) {
-          item[keyMap[key]] = item[key]
+        const obj = { value: item.key, label: item.value }
+        if (type === 'number') {
+          const parsed = parseFloat(item.key)
+          if (!isNaN(parsed)) {
+            obj.value = parsed
+          }
         }
+
         if (Array.isArray(item.children)) {
-          this.formatData(item.children)
+          obj.children = this.formatData(item.children, type)
         } else {
           item.children = []
         }
+        result.push(obj)
       }
-      return source
+      return result
     }
   }
 }
