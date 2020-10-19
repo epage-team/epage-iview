@@ -188,8 +188,13 @@ export default {
           sc.exec(script)
         })
       }
-
-      if (valueLogics.length) {
+      const diffs = {}
+      valueLogics.forEach(logic => {
+        if (logic.key in modelDiffs && !(logic.key in diffs)) {
+          diffs[logic.key] = modelDiffs[logic.key]
+        }
+      })
+      if (Object.keys(diffs).length) {
         this.store.updateWidgetByModel(modelDiffs, callback)
       }
     },
