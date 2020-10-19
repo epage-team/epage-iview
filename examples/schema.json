@@ -28,12 +28,12 @@
             "adapter": "return data",
             "data": [
               {
-                "key": "hide",
-                "value": "hide"
+                "key": "show",
+                "value": "show"
               },
               {
-                "key": "hide2",
-                "value": "hide2"
+                "key": "show2",
+                "value": "show2"
               },
               {
                 "key": "unknow",
@@ -62,7 +62,7 @@
         {
           "key": "kASJAJwRB",
           "widget": "input",
-          "hidden": false,
+          "hidden": true,
           "option": {
             "password": false,
             "prefix": "",
@@ -84,6 +84,21 @@
           ],
           "placeholder": "请输入",
           "default": ""
+        },
+        {
+          "key": "kI4g2SDED",
+          "widget": "button",
+          "hidden": false,
+          "option": {
+            "text": "提交",
+            "type": "primary",
+            "icon": "",
+            "long": false,
+            "ghost": false,
+            "shape": "square",
+            "script": ""
+          },
+          "disabled": false
         }
       ]
     }
@@ -96,14 +111,14 @@
       "type": "value",
       "key": "kB1mKTnek",
       "action": "=",
-      "value": "hide",
+      "value": "show",
       "effects": [
         {
           "key": "kASJAJwRB",
           "properties": [
             {
               "key": "hidden",
-              "value": true
+              "value": false
             },
             {
               "key": "disabled",
@@ -111,16 +126,22 @@
             }
           ]
         }
-      ]
+      ],
+      "trigger": "prop",
+      "script": "",
+      "relation": "or"
     },
     {
       "type": "value",
-      "key": "kB1mKTnek",
+      "key": "kASJAJwRB",
       "action": "=",
-      "value": "hide2",
+      "value": "1",
+      "relation": "or",
+      "trigger": "prop",
+      "script": "",
       "effects": [
         {
-          "key": "kASJAJwRB",
+          "key": "kI4g2SDED",
           "properties": [
             {
               "key": "hidden",
@@ -151,5 +172,8 @@
     "background-position": "",
     "max-width": "",
     "min-width": ""
+  },
+  "store": {
+    "dicts": []
   }
 }
