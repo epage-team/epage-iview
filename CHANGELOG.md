@@ -1,5 +1,21 @@
 # Change Log
 
+### 0.5.0（2020/11/04）
+
+- [feat] : 实例化支持指定组件渲染
+```js
+new Render(..., component )
+// component 为vue组件
+```
+- [feat] : 设计时，配置面板支持扩展tab
+```js
+const settings = [
+  { key: 'style', title: '样式设置', component: VueComponent }
+]
+new Epage({..., settings })
+```
+- [fix] : 修复全局样式最终渲染时不生效问题
+
 ### 0.4.1（2020/10/20）
 
 - [feat] : 逻辑关系中，被控组件存在多值时，增加值的 `或`、`且` 关系

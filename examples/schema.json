@@ -171,9 +171,14 @@
     "background-repeat": "",
     "background-position": "",
     "max-width": "",
-    "min-width": ""
+    "min-width": "",
+    "container": {
+      "background-color": "",
+      "background": []
+    }
   },
   "store": {
-    "dicts": []
+    "dicts": [],
+    "apis": []
   }
 }

@@ -24,6 +24,7 @@ export default class Render {
       widgets = [],
       mode,
       schema,
+      component,
       Rule: CustomRule
     } = option
 
@@ -32,6 +33,8 @@ export default class Render {
     this.mode = mode || 'edit'
     this.$$origin = null
     this.store = null
+    // 优先自定义组件渲染
+    this.component = component || null
     // 设计模式下，状态共享epage设计器内store
     if (store) {
       this.store = store
@@ -53,7 +56,7 @@ export default class Render {
   }
 
   render (option = {}) {
-    const { el, store, mode } = this
+    const { el, store, mode, component } = this
     const extension = { store, $render: this, mode: option.mode || mode }
     const root = document.createElement('div')
     el.appendChild(root)
@@ -61,7 +64,7 @@ export default class Render {
     return new Vue({
       extension,
       el: root,
-      render: h => h(FormRender)
+      render: h => h(component || FormRender)
     })
   }
 

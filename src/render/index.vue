@@ -1,54 +1,56 @@
 <template lang="pug">
-Form.ep-widget-form(
-  ref='epForm'
-  :rules='rules'
-  :model='model'
-  :label-width='rootSchema.label.width'
-  :label-position='rootSchema.label.position'
-  :class='`ep-mode-${mode}`'
-)
-  template(v-if='state.tab !== "design"')
-    ep-widget-item(
-      v-for='(item, k) in childrenSchema'
-      v-show='!item.hidden'
-      :key='item.key'
-      :schema='item'
-      :flat-widgets='flatWidgets'
-      :flat-schemas='flatSchemas'
-      :root-schema='rootSchema'
-      @on-add='onWidgetAdd'
-      @on-event='onEvent'
-      @on-dynamic-add='onDynamicAdd'
-      @on-dynamic-remove='onDynamicRemove'
-    )
-  draggable(
-    v-else
-    handle='.ep-widget-item-handle'
-    draggable='.ep-widget-item'
-    ghost-class='ep-widget-ghost'
-    v-bind='{ group: { name: "g1"}}'
-    :list='childrenSchema'
-    :disabled='state.tab !== "design"'
-    :animation='200'
+.ep-render-container(:style='containerStyle')
+  Form.ep-widget-form(
+    ref='epForm'
+    :rules='rules'
+    :model='model'
+    :label-width='rootSchema.label.width'
+    :label-position='rootSchema.label.position'
+    :class='`ep-mode-${mode}`'
+    :style='contentStyle'
   )
-    transition-group
+    template(v-if='state.tab !== "design"')
       ep-widget-item(
         v-for='(item, k) in childrenSchema'
+        v-show='!item.hidden'
         :key='item.key'
         :schema='item'
         :flat-widgets='flatWidgets'
         :flat-schemas='flatSchemas'
-        :selected-schema='selectedSchema'
         :root-schema='rootSchema'
-        @on-select='onWidgetSelect'
-        @on-delete='onWidgetDelete'
-        @on-copy='onWidgetCopy'
         @on-add='onWidgetAdd'
         @on-event='onEvent'
+        @on-dynamic-add='onDynamicAdd'
+        @on-dynamic-remove='onDynamicRemove'
       )
+    draggable(
+      v-else
+      handle='.ep-widget-item-handle'
+      draggable='.ep-widget-item'
+      ghost-class='ep-widget-ghost'
+      v-bind='{ group: { name: "g1"}}'
+      :list='childrenSchema'
+      :disabled='state.tab !== "design"'
+      :animation='200'
+    )
+      transition-group
+        ep-widget-item(
+          v-for='(item, k) in childrenSchema'
+          :key='item.key'
+          :schema='item'
+          :flat-widgets='flatWidgets'
+          :flat-schemas='flatSchemas'
+          :selected-schema='selectedSchema'
+          :root-schema='rootSchema'
+          @on-select='onWidgetSelect'
+          @on-delete='onWidgetDelete'
+          @on-copy='onWidgetCopy'
+          @on-add='onWidgetAdd'
+          @on-event='onEvent'
+        )
 </template>
 <script>
-import { Context, Script } from 'epage-core'
+import { Context, Script, style } from 'epage-core'
 import Epage from 'epage'
 import Draggable from 'vuedraggable'
 import EpWidgetItem from './item'
@@ -103,6 +105,35 @@ export default {
     },
     model () {
       return this.store.getModel()
+    },
+    containerStyle () {
+      const rootStyle = this.store.getRootSchema().style || {}
+      // background
+      const container = rootStyle.container || {}
+      const bgcolor = container['background-color']
+      let bgstyle = ''
+
+      if (Array.isArray(container.background)) {
+        bgstyle = container.background.map(bg => new style.Background(bg)).join(',')
+        if (bgcolor) {
+          bgstyle = bgstyle ? (bgstyle + ',' + bgcolor) : bgcolor
+        }
+        bgstyle = 'background:' + bgstyle + ';'
+      }
+      return bgstyle
+    },
+    contentStyle () {
+      const rootStyle = this.store.getRootSchema().style || {}
+      const COMPLEX_STYLE = ['container', 'background']
+      // other style
+      const style = Object.keys(rootStyle)
+        .map(attr => {
+          if (COMPLEX_STYLE.indexOf(attr) > -1) return ''
+          return `${attr}:${rootStyle[attr]};`
+        })
+        .join('')
+
+      return style
     }
   },
 
