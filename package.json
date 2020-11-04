@@ -47,7 +47,7 @@
     "not ie <= 8"
   ],
   "dependencies": {
-    "epage": "^0.4.1",
+    "epage": "^0.5.0",
     "iview": "^2.13.0",
     "vue": "^2.5.16",
     "vuedraggable": "^2.20.0",
