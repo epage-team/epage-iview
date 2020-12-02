@@ -1,5 +1,6 @@
 import Epage from 'epage'
 const { ajax } = Epage.helper
+const { Dict, API } = Epage
 
 export default {
   data () {
@@ -15,10 +16,9 @@ export default {
       if (type === 'static') {
         result = data
       }
-      if (type === 'dynamic') {
+      if (type === 'dynamic' || type === 'dict') {
         result = dynamicData
       }
-
       return result
     }
   },
@@ -54,23 +54,54 @@ export default {
      * 获取下拉组件动态选项
      */
     getDynamicData () {
-      const { url, adapter } = this.schema.option
+      const storeData = this.rootSchema.store || { dicts: [], apis: [] }
+      const { key } = this.schema.option
+      const { url, adapter, type, dict } = this.schema.option
+      if (type === 'dynamic') {
+        if (!url) {
+          return
+        }
+        ajax(url).then(res => {
+          this.worker.postMessage({
+            action: 'fetch',
+            data: res,
+            fn: adapter
+          })
+        }).catch(err => {
+          this.$emit('error', {
+            success: false,
+            message: err
+          })
+        })
+      } else if (type === 'dict') {
+        if (dict.type === 'dict') {
+          const dic = storeData.dicts.filter(item => item.name === dict.dict)[0]
+          if (!dic) return
+          const dictIns = new Dict(dic)
 
-      if (!url) {
-        return
+          dictIns.getData().then(() => {
+            if (!Array.isArray(dictIns.data)) return
+
+            const dictAPI = dic.data.filter(item => item.name === dictIns.dictAPI)[0]
+            if (!dictAPI) return
+
+            const apiIns = new API(dictAPI)
+            apiIns.getData().then(() => {
+              if (!Array.isArray(apiIns.data)) return
+              this.store.updateWidgetOption(key, { dynamicData: [...apiIns.data] })
+            })
+          })
+        } else if (dict.type === 'api') {
+          const api = storeData.apis.filter(item => item.name === dict.api)[0]
+          if (!api) return
+
+          const apiIns = new API(api)
+          apiIns.getData().then(() => {
+            if (!Array.isArray(apiIns.data)) return
+            this.store.updateWidgetOption(key, { dynamicData: [...apiIns.data] })
+          })
+        }
       }
-      ajax(url).then(res => {
-        this.worker.postMessage({
-          action: 'fetch',
-          data: res,
-          fn: adapter
-        })
-      }).catch(err => {
-        this.$emit('error', {
-          success: false,
-          message: err
-        })
-      })
     }
   }
 }
