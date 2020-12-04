@@ -10,14 +10,29 @@ export default {
   },
   computed: {
     options () {
-      const { type, data, dynamicData } = this.schema.option // data 静态选项 dynamicData 动态选项
+      const { type, data, dynamicData, dict: dictop } = this.schema.option // data 静态选项 dynamicData 动态选项
       let result = []
 
       if (type === 'static') {
         result = data
       }
-      if (type === 'dynamic' || type === 'dict') {
+      if (type === 'dynamic') {
         result = dynamicData
+      }
+      if (type === 'dict') {
+        const st = this.store.getStore()
+        const { type, api, dict, dictAPI } = dictop || {}
+
+        if (type === 'api') {
+          const apiIns = st.apis.filter(item => item.name === api)[0]
+          result = (apiIns || {}).data || []
+        } else if (type === 'dict') {
+          const dictIns = st.dicts.filter(item => item.name === dict)[0]
+          if (dictIns && dictIns.data) {
+            const apiIns = dictIns.data.filter(item => item.name === dictAPI)[0]
+            result = (apiIns || {}).data || []
+          }
+        }
       }
       return result
     }
@@ -55,7 +70,6 @@ export default {
      */
     getDynamicData () {
       const storeData = this.rootSchema.store || { dicts: [], apis: [] }
-      const { key } = this.schema.option
       const { url, adapter, type, dict } = this.schema.option
       if (type === 'dynamic') {
         if (!url) {
@@ -77,30 +91,33 @@ export default {
         if (dict.type === 'dict') {
           const dic = storeData.dicts.filter(item => item.name === dict.dict)[0]
           if (!dic) return
-          const dictIns = new Dict(dic)
+          const dictIns = (dic instanceof Dict) ? dic : new Dict(dic)
 
-          dictIns.getData().then(() => {
-            if (!Array.isArray(dictIns.data)) return
-
-            const dictAPI = dic.data.filter(item => item.name === dictIns.dictAPI)[0]
-            if (!dictAPI) return
-
-            const apiIns = new API(dictAPI)
-            apiIns.getData().then(() => {
-              if (!Array.isArray(apiIns.data)) return
-              this.store.updateWidgetOption(key, { dynamicData: [...apiIns.data] })
+          if (dictIns.data.length === 0) {
+            dictIns.getData().then(() => {
+              this.fetchAPI(dictIns, dict.dictAPI)
             })
-          })
+          } else {
+            this.fetchAPI(dictIns, dict.dictAPI)
+          }
         } else if (dict.type === 'api') {
           const api = storeData.apis.filter(item => item.name === dict.api)[0]
           if (!api) return
 
-          const apiIns = new API(api)
-          apiIns.getData().then(() => {
-            if (!Array.isArray(apiIns.data)) return
-            this.store.updateWidgetOption(key, { dynamicData: [...apiIns.data] })
-          })
+          const apiIns = (api instanceof API) ? api : new API(api)
+          apiIns.getData()
         }
+      }
+    },
+
+    fetchAPI (dictIns, dictAPI) {
+      const curAPI = dictIns.data.filter(item => item.name === dictAPI)[0]
+
+      if (!curAPI) return
+      const apiIns = (curAPI instanceof API) ? curAPI : new API(curAPI)
+
+      if (apiIns.data.length === 0) {
+        apiIns.getData()
       }
     }
   }
