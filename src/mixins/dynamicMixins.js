@@ -1,6 +1,5 @@
 import Epage from 'epage'
 const { ajax } = Epage.helper
-const { Dict, API } = Epage
 
 export default {
   data () {
@@ -20,19 +19,7 @@ export default {
         result = dynamicData
       }
       if (type === 'dict') {
-        const st = this.store.getStore()
-        const { type, api, dict, dictAPI } = dictop || {}
-
-        if (type === 'api') {
-          const apiIns = st.apis.filter(item => item.name === api)[0]
-          result = (apiIns || {}).data || []
-        } else if (type === 'dict') {
-          const dictIns = st.dicts.filter(item => item.name === dict)[0]
-          if (dictIns && dictIns.data) {
-            const apiIns = dictIns.data.filter(item => item.name === dictAPI)[0]
-            result = (apiIns || {}).data || []
-          }
-        }
+        result = this.getDictAPIData(dictop)
       }
       return result
     }
@@ -47,6 +34,26 @@ export default {
     }
   },
   methods: {
+    getDictAPIData (dictOpt) {
+      let result = []
+      const st = this.store.getStore()
+      const { type, api, dict, dictAPI } = dictOpt || {}
+
+      if (type === 'api') {
+        const apiIns = st.apis.filter(item => item.name === api)[0]
+
+        result = (apiIns || {}).data || []
+      } else if (type === 'dict') {
+        const dictIns = st.dicts.filter(item => item.name === dict)[0]
+
+        if (dictIns && dictIns.data) {
+          const apiIns = dictIns.data.filter(item => item.name === dictAPI)[0]
+
+          result = (apiIns || {}).data || []
+        }
+      }
+      return result
+    },
     listenerMessage () {
       this.worker.onmessage = e => {
         // 存放临时数据
@@ -69,8 +76,7 @@ export default {
      * 获取下拉组件动态选项
      */
     getDynamicData () {
-      const storeData = this.rootSchema.store || { dicts: [], apis: [] }
-      const { url, adapter, type, dict } = this.schema.option
+      const { url, adapter, type } = this.schema.option
       if (type === 'dynamic') {
         if (!url) {
           return
@@ -88,36 +94,7 @@ export default {
           })
         })
       } else if (type === 'dict') {
-        if (dict.type === 'dict') {
-          const dic = storeData.dicts.filter(item => item.name === dict.dict)[0]
-          if (!dic) return
-          const dictIns = (dic instanceof Dict) ? dic : new Dict(dic)
-
-          if (dictIns.data.length === 0) {
-            dictIns.getData().then(() => {
-              this.fetchAPI(dictIns, dict.dictAPI)
-            })
-          } else {
-            this.fetchAPI(dictIns, dict.dictAPI)
-          }
-        } else if (dict.type === 'api') {
-          const api = storeData.apis.filter(item => item.name === dict.api)[0]
-          if (!api) return
-
-          const apiIns = (api instanceof API) ? api : new API(api)
-          apiIns.getData()
-        }
-      }
-    },
-
-    fetchAPI (dictIns, dictAPI) {
-      const curAPI = dictIns.data.filter(item => item.name === dictAPI)[0]
-
-      if (!curAPI) return
-      const apiIns = (curAPI instanceof API) ? curAPI : new API(curAPI)
-
-      if (apiIns.data.length === 0) {
-        apiIns.getData()
+        // root schema时以初始化
       }
     }
   }
