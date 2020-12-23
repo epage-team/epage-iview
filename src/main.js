@@ -4,6 +4,7 @@ export { default as Epage } from 'epage'
 
 export const inputWidget = require('./widgets/input')
 export const textareaWidget = require('./widgets/textarea')
+export const textWidget = require('./widgets/text')
 export const inputNumberWidget = require('./widgets/inputNumber')
 export const selectWidget = require('./widgets/select')
 export const cascaderWidget = require('./widgets/cascader')
@@ -44,6 +45,7 @@ export default [{
   key: 'iview-display',
   widgets: [
     // tableWidget,
+    textWidget,
     lineWidget
   ]
 }, {
