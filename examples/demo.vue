@@ -15,8 +15,8 @@
 import widgets, { Render, Epage } from 'epage-iview'
 import * as myRules from './rules'
 import schema from './schema.json'
-import styleSetting from './settings/style-etting'
-import epageConfig from './epage.config'
+// import styleSetting from './settings/style-etting'
+// import epageConfig from './epage.config'
 
 const { Rule, helper } = Epage
 
@@ -38,7 +38,7 @@ export default {
   mounted () {
     const el = this.$refs.form
     // 设计器
-    this.epage = new Epage({ el, widgets, schema, Render, ...epageConfig })
+    this.epage = new Epage({ el, widgets, schema, Render })
     this.epage.$render.store.updateModel(this.model)
   },
   methods: {
