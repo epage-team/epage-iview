@@ -40,7 +40,7 @@ export default {
     },
     options () {
       // data 静态选项 dynamicData 动态选项
-      const { type, data, dynamicData } = this.schema.option
+      const { type, data, dynamicData, dict: dictop } = this.schema.option
       const valueType = this.resolveArrayType(this.schema.type)
 
       let result = []
@@ -50,6 +50,9 @@ export default {
       }
       if (type === 'dynamic') {
         result = dynamicData || []
+      }
+      if (type === 'dict') {
+        result = this.getDictAPIData(dictop)
       }
       return this.formatData(JSON.parse(JSON.stringify(result)), valueType)
     }

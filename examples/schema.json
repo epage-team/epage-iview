@@ -23,6 +23,12 @@
           "hidden": false,
           "option": {
             "type": "static",
+            "dict": {
+              "type": "api",
+              "dict": "",
+              "dictAPI": "",
+              "api": ""
+            },
             "direction": "horizontal",
             "url": "",
             "adapter": "return data",
@@ -56,8 +62,7 @@
               "trigger": "change"
             }
           ],
-          "placeholder": "请选择",
-          "default": ""
+          "placeholder": "请选择"
         },
         {
           "key": "kASJAJwRB",
@@ -157,6 +162,8 @@
     }
   ],
   "style": {
+    "width": "",
+    "height": "",
     "margin-top": "0%",
     "margin-right": "auto",
     "margin-bottom": "0%",
@@ -165,17 +172,18 @@
     "padding-right": "0%",
     "padding-bottom": "0%",
     "padding-left": "0%",
+    "background": [],
+    "container": {
+      "background-color": "",
+      "background": []
+    },
     "background-color": "",
     "background-image": "",
     "background-size": "",
     "background-repeat": "",
     "background-position": "",
     "max-width": "",
-    "min-width": "",
-    "container": {
-      "background-color": "",
-      "background": []
-    }
+    "min-width": ""
   },
   "store": {
     "dicts": [],
