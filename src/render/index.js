@@ -88,6 +88,7 @@ export default class Render {
     if (this.$$origin && isFunction(this.$$origin.$destroy)) {
       this.$$origin.$destroy()
       this.$$origin.$off()
+      if (!this.el.contains(this.$$origin.$el)) return
       this.el.removeChild(this.$$origin.$el)
     }
   }

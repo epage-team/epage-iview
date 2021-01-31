@@ -25,7 +25,8 @@ const webpackConfig = merge(webpackBaseConfig, {
     })
   ],
   devServer: {
-    port: 8081
+    port: 8081,
+    host: '0.0.0.0'
     // open: true
   },
   resolve: {

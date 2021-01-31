@@ -69,6 +69,7 @@
     "codemirror": "^5.56.0",
     "cross-env": "^7.0.0",
     "css-loader": "^2.1.1",
+    "epage-vant": "^0.5.2",
     "eslint": "^6.6.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-plugin-import": "^2.18.2",

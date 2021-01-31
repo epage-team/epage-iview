@@ -1,29 +1,31 @@
 <template lang="pug">
 .demo-container
-  .demo-header
-    span.demo-title Epage演示示例
-    span.demo-btns
-      Button.demo-btn(type='primary' size='small' @click='validateForm') 校验表单
-      Button.demo-btn(type='warning' size='small' @click='resetForm') 重置表单
-      Button.demo-btn(type='info' size='small' @click='getFormData') 获取表单值
+  //- .demo-header
+  //-   span.demo-title Epage演示示例
+  //-   span.demo-btns
+  //-     Button.demo-btn(type='primary' size='small' @click='validateForm') 校验表单
+  //-     Button.demo-btn(type='warning' size='small' @click='resetForm') 重置表单
+  //-     Button.demo-btn(type='info' size='small' @click='getFormData') 获取表单值
 
   .demo-epage
     div(ref='form')
 
 </template>
 <script>
-import widgets, { Render, Epage } from 'epage-iview'
-import * as myRules from './rules'
-import schema from './schema.json'
+import { render } from 'epage-core'
+import Epage from 'epage'
+// import * as myRules from './rules'
+// import schema from './schema.json'
 // import styleSetting from './settings/style-etting'
-// import epageConfig from './epage.config'
+import config from './epage.config.js'
 
-const { Rule, helper } = Epage
+
+// const { Rule, helper } = Epage
 
 // 扩展自定义rule
-Rule.set(myRules)
+// Rule.set(myRules)
 // 自定义widget 的validators
-helper.setValidators(widgets, { input: ['phone'] })
+// helper.setValidators(widgets, { input: ['phone'] })
 // const myWidgets = helper.mergeWidget(widgets, richText)
 
 export default {
@@ -31,15 +33,19 @@ export default {
     return {
       epage: {},
       model: {
-        kAenMN1DX: '这是关键字'
+        kASJAJwRB: '这是关键字'
       }
     }
   },
   mounted () {
     const el = this.$refs.form
+    const option = { ...config, el }
     // 设计器
-    this.epage = new Epage({ el, widgets, schema, Render })
+    this.epage = new Epage(option)
     this.epage.$render.store.updateModel(this.model)
+    // render
+    // this.epage = new render.VueRender(option)
+    // this.epage.store.updateModel(this.model)
   },
   methods: {
     checkPreview (action) {
