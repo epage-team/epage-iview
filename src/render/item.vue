@@ -47,7 +47,7 @@
                 @on-dynamic-add='onDynamicAdd'
                 @on-dynamic-remove='onDynamicRemove'
               )
-            draggable(
+            vue-drag(
               v-else
               handle='.ep-widget-item-handle'
               draggable='.ep-widget-item'
@@ -195,8 +195,7 @@
 
 </template>
 <script>
-import { Context, Script } from 'epage-core'
-import Draggable from 'vuedraggable'
+import { Context, Script, drag } from 'epage-core'
 import { version } from 'iview'
 
 // 兼容iview@2及iview@3图标不一致问题
@@ -211,7 +210,7 @@ const mapIcon2To3 = {
 export default {
   name: 'EpWidgetItem',
   components: {
-    Draggable
+    VueDrag: drag.VueDrag
   },
   props: {
     schema: {
@@ -229,8 +228,7 @@ export default {
     selectedSchema: {
       type: Object,
       default: () => ({
-        key: '',
-        schema: {}
+        key: ''
       })
     },
     rootSchema: {
@@ -292,7 +290,6 @@ export default {
       this.$emit('on-dynamic-remove', schema, index)
     },
     onViewAdd (schema) {
-      console.log(schema, 9)
       this.$emit('on-add', schema)
     },
     getStyle () {

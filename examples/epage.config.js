@@ -1,7 +1,7 @@
 import { render, helper } from 'epage-core'
 import mobileWidgets, { entry as mobileEntry } from 'epage-vant'
 import pcWidgets, { entry as pcEntry } from 'epage-iview'
-import StyleSetting from './settings/style-etting.vue'
+// import StyleSetting from './settings/style-etting.vue'
 import vant from 'vant'
 import schema from './schema.json'
 // import Vue from 'vue'

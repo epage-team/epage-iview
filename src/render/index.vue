@@ -23,7 +23,7 @@
         @on-dynamic-add='onDynamicAdd'
         @on-dynamic-remove='onDynamicRemove'
       )
-    draggable(
+    vue-drag(
       v-else
       handle='.ep-widget-item-handle'
       draggable='.ep-widget-item'
@@ -50,9 +50,8 @@
         )
 </template>
 <script>
-import { Context, Script, style } from 'epage-core'
+import { Context, Script, style, drag } from 'epage-core'
 import Epage from 'epage'
-import Draggable from 'vuedraggable'
 import EpWidgetItem from './item'
 
 const { helper } = Epage
@@ -62,7 +61,7 @@ export default {
   off: evt.off.bind(evt),
   components: {
     EpWidgetItem,
-    Draggable
+    VueDrag: drag.VueDrag
   },
 
   data () {
@@ -279,8 +278,6 @@ export default {
     },
 
     onWidgetAdd (schema) {
-      // console.log(323, schema)
-      // this.store.addWidgetChild(schema.key, 0, schema)
       this.store.addWidgetChild(schema.key, schema.children.length, schema.children[0])
       this.$emit('on-add', schema)
     }
