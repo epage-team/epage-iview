@@ -4,27 +4,35 @@ import pcWidgets, { entry as pcEntry } from 'epage-iview'
 import StyleSetting from './settings/style-etting.vue'
 import vant from 'vant'
 import schema from './schema.json'
+// import Vue from 'vue'
 
 class EpagePlugin{
   constructor(option) {
   }
   apply (hooks, epage) {
-    // hooks.life.beforeCreate.tap(function ()  {
-    //   console.log(11, this)
-    // })
-    // hooks.life.created.tap(({ ctx }) => {
-    //   console.log(ctx, this.option, 99)
-    // })
-    // hooks.life.beforeDestroy.tap(() => {
-    //   console.log(ctx, this.option, 12)
-    // })
-    // hooks.life.destroyed.tap((ctx) => {
-    //   console.log(ctx, 49)
-    // })
+    hooks.life.beforeCreate.tap(function ()  {
+      console.log(11, this)
+    })
+    
+    hooks.life.beforeCreate.tap(function ()  {
+      console.log(13, this)
+    })
+    hooks.life.created.tap(({ ctx }) => {
+      console.log(ctx, this.option, 99)
+    })
+    hooks.life.beforeDestroy.tap(() => {
+      console.log(ctx, this.option, 12)
+    })
+    hooks.life.destroyed.tap((ctx) => {
+      console.log(ctx, 49)
+    })
 
-    // hooks.schema.copy.tap((str) => {
-    //   return str + '\n\n ====== the end ====='
-    // })
+    hooks.schema.copy.tap((str) => {
+      return str + '\n\n ====== the end ====='
+    })
+    hooks.life.beforeCreate.tap(function ()  {
+      console.log(12, this)
+    })
   }
 }
 
@@ -42,15 +50,14 @@ export default {
   env: 'production',
   el: document.getElementById('id'),
   // 以下3个属性将移动到 pc | mobile属性中
-  widgets: pcWidgets,
+  // widgets: pcWidgets,
   // Render: render.VueRender,
-  main: pcEntry,
-  component: pcEntry,
+  // component: pcEntry,
   
   schema,
   plugins: [
     new EpageInitPlugin(),
-    new EpagePlugin()
+    // new EpagePlugin()
   ],
   // panels: {
   //   // design: {
@@ -83,6 +90,7 @@ export default {
 
   // },
   panels: {
+    // 自定义顶栏面板
     header: {
       // render: function ({ el, store, ctx }) {
       //   console.log(11, el, store)
@@ -116,7 +124,7 @@ export default {
         // render: function({ el, store, ctx }) {
         //   return 'PC + H5'
         // },
-        style: 'font-size: 20px;'
+        // style: 'font-size: 20px;'
       },
       right: {
         // logic: false,
@@ -132,22 +140,31 @@ export default {
       // }
     },
   },
+  // 默认渲染视图，pc还是mobile
   view: 'pc', // pc | mobile,
+  // mobile模式下渲染器及widgets
   mobile: {
-    main: mobileEntry,
+    component: mobileEntry,
     widgets: mobileWidgets,
     Render: render.VueRender
   },
+  // pc模式下渲染器及widgets
   pc: {
-    main: pcEntry,
+    component: pcEntry,
     widgets: pcWidgets,
     Render: render.VueRender
   },
-  settings: [
-    // {
-    //   title: '扩展配置',
-    //   key: 'ext',
-    //   component: StyleSetting
-    // }
-  ]
+  // 通用的扩展配置
+  // settings: [
+  //   {
+  //     name: '样式',
+  //     key: 'style',
+  //     framework: 'vue',
+  //     component: StyleSetting,
+  //     // component: function({ el, store }) {
+  //     //   console.log(111, el)
+  //     //   el.innerHTML = '<h2>asdfa sdaf</h2>'
+  //     // }
+  //   }
+  // ]
 }

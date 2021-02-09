@@ -33,7 +33,7 @@ export default {
     return {
       epage: {},
       model: {
-        kASJAJwRB: '这是关键字'
+        kASJAJwRB: 'ss'
       }
     }
   },
