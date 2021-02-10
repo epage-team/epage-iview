@@ -59,38 +59,9 @@ export default {
     new EpageInitPlugin(),
     // new EpagePlugin()
   ],
-  // panels: {
-  //   // design: {
-  //   //   title: '设计',
-  //   //   key: 'design',
-  //   //   index: 0,
-  //   //   component: StyleSetting
-  //   // },
-  //   // preview: {
-  //   //   title: '预览',
-  //   //   key: 'preview',
-  //   //   index: 1,
-  //   //   component: StyleSetting
-  //   // },
-  //   logic: {
-  //     title: '逻辑',
-  //     key: 'logic',
-  //     index: 2,
-  //     component: StyleSetting
-  //   },
-  //   schema: {
-  //     title: 'Schema',
-  //     key: 'schema',
-  //     index: 3,
-  //     component: StyleSetting
-  //   },
-  // },
-  
-  // layout: {
-
-  // },
   panels: {
-    // 自定义顶栏面板
+  //   // 自定义顶栏面板
+  // header: false
     header: {
       // render: function ({ el, store, ctx }) {
       //   console.log(11, el, store)
@@ -106,7 +77,7 @@ export default {
       //     },
       //     methods: {
       //       click () {
-      //         ctx.$emit('view-change', 'mobile')
+      //         ctx.$emit('change-view', 'mobile')
       //         console.log('clicked: ', this.title)
       //       }
       //     }
