@@ -1,5 +1,5 @@
 import { render, helper } from 'epage-core'
-import mobileWidgets, { entry as mobileEntry } from 'epage-vant'
+import h5Widgets, { entry as h5Entry } from 'epage-vant'
 import pcWidgets, { entry as pcEntry } from 'epage-iview'
 // import StyleSetting from './settings/style-etting.vue'
 import vant from 'vant'
@@ -49,7 +49,7 @@ class EpageInitPlugin{
 export default {
   env: 'production',
   // el: document.getElementById('id'),
-  // 以下3个属性将移动到 pc | mobile属性中
+  // 以下3个属性将移动到 pc | h5属性中
   // widgets: pcWidgets,
   // Render: render.VueRender,
   // component: pcEntry,
@@ -77,7 +77,7 @@ export default {
       //     },
       //     methods: {
       //       click () {
-      //         ctx.$emit('change-view', 'mobile')
+      //         ctx.$emit('change-view', 'h5')
       //         console.log('clicked: ', this.title)
       //       }
       //     }
@@ -111,12 +111,12 @@ export default {
       // }
     },
   },
-  // 默认渲染视图，pc还是mobile
-  view: 'pc', // pc | mobile,
-  // mobile模式下渲染器及widgets
-  mobile: {
-    component: mobileEntry,
-    widgets: mobileWidgets,
+  // 默认渲染视图，pc还是h5
+  view: 'pc', // pc | h5,
+  // h5模式下渲染器及widgets
+  h5: {
+    component: h5Entry,
+    widgets: h5Widgets,
     Render: render.VueRender
   },
   // pc模式下渲染器及widgets
