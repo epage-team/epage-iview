@@ -6,15 +6,13 @@
 )
   .ep-widget-item-name {{schema.name}}
   div(v-if='tab === "design"')
-    Icon.ep-widget-btn.ep-widget-btn-delete(
+    .ep-widget-btn.ep-widget-btn-delete.ep-icon.ep-icon-trash(
       title='删除'
-      :type='icons.remove'
-      @click.native='onOriginViewDelete($event, schema)'
+      @click='onOriginViewDelete($event, schema)'
     )
-    Icon.ep-widget-btn.ep-widget-btn-clone(
+    .ep-widget-btn.ep-widget-btn-clone.ep-icon.ep-icon-copy(
       title='复制'
-      :type='icons.copy'
-      @click.native='onOriginViewCopy($event, schema)'
+      @click='onOriginViewCopy($event, schema)'
     )
 
   template(v-if='schema.container')
@@ -109,10 +107,9 @@
                 @on-dynamic-remove='onDynamicRemove'
               )
         .ep-widget-description(v-if='sub.description') {{sub.description}}
-        Icon.ep-widget-dynamic-remove(
+        .ep-widget-dynamic-remove.ep-icon.ep-icon-minus(
           title='删除'
-          :type='icons.remove'
-          @click.native='onOriginDynamicRemove($event, schema, s)'
+          @click='onOriginDynamicRemove($event, schema, s)'
         )
 
     Button(
@@ -176,10 +173,9 @@
           @on-event='onEvent'
         )
         .ep-widget-description(v-if='sc.description') {{sc.description}}
-        Icon.ep-widget-dynamic-remove(
+        .ep-widget-dynamic-remove.ep-icon.ep-icon-minus(
           title='删除'
-          :type='icons.remove'
-          @click.native='onOriginDynamicRemove($event, schema, index)'
+          @click='onOriginDynamicRemove($event, schema, index)'
         )
       FormItem(
         v-if='schema.list.length!==0'
@@ -196,16 +192,6 @@
 </template>
 <script>
 import { Context, Script, drag } from 'epage-core'
-import { version } from 'iview'
-
-// 兼容iview@2及iview@3图标不一致问题
-const MAIN_VERSION = parseInt(version || 2)
-const IVIEW_V3 = 3
-const mapIcon2To3 = {
-  'arrow-move': 'md-move',
-  'trash-a': 'ios-trash',
-  'ios-copy-outline': 'md-copy'
-}
 
 export default {
   name: 'EpWidgetItem',
@@ -237,13 +223,7 @@ export default {
     }
   },
   data () {
-    return {
-      icons: {
-        move: 'arrow-move',
-        remove: 'trash-a',
-        copy: 'ios-copy-outline'
-      }
-    }
+    return {}
   },
   computed: {
     store () {
@@ -265,9 +245,6 @@ export default {
     tab () {
       return this.store.getTab()
     }
-  },
-  beforeMount () {
-    this.setIcons()
   },
   methods: {
     getPlaceholderCls () {
@@ -298,14 +275,6 @@ export default {
       if (style) result = Object.keys(style).filter(_ => style[_]).map(attr => `${attr}: ${style[attr]};`).join('')
       if (this.store.getTab() === 'design' && hidden) result += 'opacity: 0.7;'
       return result
-    },
-    setIcons () {
-      const icons = {}
-      if (MAIN_VERSION < IVIEW_V3) return
-      if (this.icons.move in mapIcon2To3) icons.move = mapIcon2To3[this.icons.move]
-      if (this.icons.copy in mapIcon2To3) icons.copy = mapIcon2To3[this.icons.copy]
-      if (this.icons.remove in mapIcon2To3) icons.remove = mapIcon2To3[this.icons.remove]
-      Object.assign(this.icons, icons)
     },
     onOriginViewSelect (e, schema) {
       // 预览模式下，为了级联、下拉框菜单点击空白处收起，需要事件冒泡到document

@@ -48,7 +48,7 @@ class EpageInitPlugin{
 
 export default {
   env: 'production',
-  el: document.getElementById('id'),
+  // el: document.getElementById('id'),
   // 以下3个属性将移动到 pc | mobile属性中
   // widgets: pcWidgets,
   // Render: render.VueRender,
@@ -130,12 +130,12 @@ export default {
   //   {
   //     name: '样式',
   //     key: 'style',
-  //     framework: 'vue',
-  //     component: StyleSetting,
-  //     // component: function({ el, store }) {
-  //     //   console.log(111, el)
-  //     //   el.innerHTML = '<h2>asdfa sdaf</h2>'
-  //     // }
+  //     // framework: 'vue',
+  //     // component: StyleSetting,
+  //     component: function({ el, store }) {
+  //       console.log(111, el)
+  //       el.innerHTML = '<h2>asdfa sdaf</h2>'
+  //     }
   //   }
   // ]
 }
