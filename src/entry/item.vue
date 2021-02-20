@@ -107,7 +107,7 @@
                 @on-dynamic-remove='onDynamicRemove'
               )
         .ep-widget-description(v-if='sub.description') {{sub.description}}
-        .ep-widget-dynamic-remove.ep-icon.ep-icon-minus(
+        .epiv-widget-dynamic-remove.ep-icon.ep-icon-minus(
           title='删除'
           @click='onOriginDynamicRemove($event, schema, s)'
         )
@@ -173,7 +173,7 @@
           @on-event='onEvent'
         )
         .ep-widget-description(v-if='sc.description') {{sc.description}}
-        .ep-widget-dynamic-remove.ep-icon.ep-icon-minus(
+        .epiv-widget-dynamic-remove.ep-icon.ep-icon-minus(
           title='删除'
           @click='onOriginDynamicRemove($event, schema, index)'
         )

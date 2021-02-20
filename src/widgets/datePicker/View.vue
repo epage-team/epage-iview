@@ -18,9 +18,9 @@
 </template>
 <script>
 import viewExtend from '../../extends/view'
-import Epage from 'epage'
+import { helper } from 'epage-core'
 
-const { include } = Epage.helper
+const { include } = helper
 const timeOptions = ['HH:mm:ss', 'HH:mm', 'mm:ss']
 const monthOptions = ['yyyy-MM', 'yyyy/MM']
 

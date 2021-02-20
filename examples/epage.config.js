@@ -1,8 +1,8 @@
 import { render, helper } from 'epage-core'
-import h5Widgets, { entry as h5Entry } from 'epage-vant'
+// import h5Widgets, { entry as h5Entry } from 'epage-vant'
 import pcWidgets, { entry as pcEntry } from 'epage-iview'
 // import StyleSetting from './settings/style-etting.vue'
-import vant from 'vant'
+// import vant from 'vant'
 import schema from './schema.json'
 // import Vue from 'vue'
 
@@ -41,7 +41,7 @@ class EpageInitPlugin{
   // }
   apply (hooks) {
     hooks.render.init.tap(function({ Vue }) {
-      helper.usePlugins(Vue, [vant])
+      // helper.usePlugins(Vue, [vant])
     })
   }
 }
@@ -114,11 +114,11 @@ export default {
   // 默认渲染视图，pc还是h5
   view: 'pc', // pc | h5,
   // h5模式下渲染器及widgets
-  h5: {
-    component: h5Entry,
-    widgets: h5Widgets,
-    Render: render.VueRender
-  },
+  // h5: {
+  //   component: h5Entry,
+  //   widgets: h5Widgets,
+  //   Render: render.VueRender
+  // },
   // pc模式下渲染器及widgets
   pc: {
     component: pcEntry,

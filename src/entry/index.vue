@@ -50,12 +50,17 @@
         )
 </template>
 <script>
-import { Context, Script, style, drag } from 'epage-core'
-import Epage from 'epage'
+import {
+  Context,
+  Script,
+  Event as EpageEvent,
+  style,
+  drag,
+  helper
+} from 'epage-core'
 import EpWidgetItem from './item'
 
-const { helper } = Epage
-const evt = new Epage.Event()
+const evt = new EpageEvent()
 export default {
   on: evt.on.bind(evt),
   off: evt.off.bind(evt),

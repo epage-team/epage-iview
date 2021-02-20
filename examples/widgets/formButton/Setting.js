@@ -1,3 +1,3 @@
-import { Epage } from 'epage-iview'
+import { widget } from 'epage-core'
 
-export default Epage.widget.autoComplete.Setting
+export default widget.autoComplete.Setting

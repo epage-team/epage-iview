@@ -58,9 +58,9 @@
 </template>
 <script>
 import viewExtend from '../../extends/view'
-import Epage from 'epage'
+import { helper } from 'epage-core'
 
-const { isNotEmptyString, isArray } = Epage.helper
+const { isNotEmptyString, isArray } = helper
 
 export default {
   filters: {

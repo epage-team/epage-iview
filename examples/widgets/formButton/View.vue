@@ -12,8 +12,10 @@
 
 </template>
 <script>
-import { viewExtend, Epage } from 'epage-iview'
-const { getModel, ajax } = Epage.helper
+import { viewExtend } from 'epage-iview'
+import { helper } from 'epage-core'
+
+const { getModel, ajax } = helper
 export default {
   extends: viewExtend,
   mounted () {

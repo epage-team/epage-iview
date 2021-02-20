@@ -12,15 +12,11 @@
 
 </template>
 <script>
-import { render } from 'epage-core'
 import Epage from 'epage'
 // import * as myRules from './rules'
 // import schema from './schema.json'
 // import styleSetting from './settings/style-etting'
 import config from './epage.config.js'
-
-
-// const { Rule, helper } = Epage
 
 // 扩展自定义rule
 // Rule.set(myRules)
