@@ -1,5 +1,9 @@
 # Change Log
 
+### 0.7.1（2021/2/21）
+
+- [fix] : 更新`epage-core@0.5.1`
+
 ### 0.7.0（2021/2/20）
 
 - [feat] : 移动`Render`渲染器到`epage-core`包中
