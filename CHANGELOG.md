@@ -13,7 +13,6 @@ const { VueRender } = render
 ```
 
 - [feat] : 重命名 `src/render/`为`src/entry/`
-- [feat] : 移除 `src/render/`为`src/entry/`
 
 ```js
 // 旧用法

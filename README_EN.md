@@ -21,8 +21,8 @@ Official website：[http://epage.didichuxing.com](http://epage.didichuxing.com)
 ## Install
 
 ```sh
-npm install epage-core epage-iview -S
-# or yarn add epage-core epage-iview
+npm install epage-iview -S
+# or yarn add epage-iview
 ```
 
 ## Usage
@@ -42,6 +42,7 @@ const el = document.getElementById('root')
 // Instantiate Designer
 new Epage({
   el,
+  schema,
   pc: {
     widgets,
     Render: render.VueRender,
@@ -49,7 +50,7 @@ new Epage({
   }
 })
 // or create Render
-new Render({ el, widgets, schema })
+new render.VueRender({ el, widgets, schema, component: entry })
 ```
 
 -  `script`
@@ -80,6 +81,7 @@ const { render } = EpageCore
 // Instantiate Designer
 new Epage({
   el,
+  schema,
   pc: {
     widgets,
     Render: render.VueRender,
@@ -87,7 +89,7 @@ new Epage({
   }
 })
 // or create Render
-new Render({ el, widgets, schema })
+new render.VueRender({ el, widgets, schema, component: entry })
 </script>
 
 ```
