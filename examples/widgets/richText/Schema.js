@@ -1,6 +1,6 @@
-import { Epage } from 'epage-iview'
+import { schema } from 'epage-core'
 
-export default class RichTextSchema extends Epage.schema.FormSchema {
+export default class RichTextSchema extends schema.FormSchema {
   constructor (props) {
     super()
     this.label = '富文本'

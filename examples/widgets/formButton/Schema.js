@@ -1,3 +1,3 @@
-import { Epage } from 'epage-iview'
+import { widget } from 'epage-core'
 
-export default Epage.widget.formButton.Schema
+export default widget.formButton.Schema

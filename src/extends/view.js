@@ -1,6 +1,6 @@
-import Epage from 'epage'
+import { constant } from 'epage-core'
 
-const { defaultSchema } = Epage.constant
+const { defaultSchema } = constant
 
 export default {
   props: {

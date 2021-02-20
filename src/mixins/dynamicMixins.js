@@ -1,5 +1,5 @@
-import Epage from 'epage'
-const { ajax } = Epage.helper
+import { helper, Worker as EpageWorker } from 'epage-core'
+const { ajax } = helper
 
 export default {
   data () {
@@ -28,7 +28,7 @@ export default {
     const { type } = this.schema.option
 
     if (type !== 'static') {
-      this.worker = new Epage.Worker()
+      this.worker = new EpageWorker()
       this.listenerMessage()
       this.getDynamicData()
     }

@@ -12,11 +12,10 @@
 
 </template>
 <script>
-import widgets, { Render, Epage } from 'epage-iview'
+import { Rule, helper, render } from 'epage-core'
+import widgets from 'epage-iview'
 import * as myRules from './rules'
 import schema from './schema.json'
-
-const { Rule, helper } = Epage
 
 // 扩展自定义rule
 Rule.set(myRules)
@@ -36,7 +35,7 @@ export default {
   mounted () {
     const el = this.$refs.form
     // 渲染默认编辑模式
-    this.render = new Render({ el, widgets, schema })
+    this.render = new render.VueRender({ el, widgets, schema })
     this.render.store.updateModel(this.model)
     this.listenerForm()
   },

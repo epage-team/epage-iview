@@ -1,3 +1,3 @@
-import Epage from 'epage'
+import { schema } from 'epage-core'
 
-export default Epage.widget.textarea.Schema
+export default schema.base.textarea

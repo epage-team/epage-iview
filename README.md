@@ -21,8 +21,8 @@
 ## 安装
 
 ```sh
-npm install epage-iview -S
-# or yarn add epage-iview
+npm install epage-core epage-iview -S
+# or yarn add epage-core epage-iview
 ```
 
 ## 设计器及渲染器示例
@@ -30,13 +30,24 @@ npm install epage-iview -S
 -  `npm` 方式引入（推荐）
 
 ```js
-import widgets, { Render, Epage } from 'epage-iview'
-import schema from './schema.json'
+import { render } from 'epage-core'
+import Epage from 'epage'
+import widgets, { entry } from 'epage-iview'
+import 'iview/src/styles/index.less';
+import 'epage/src/style/main.less'
 import 'epage-iview/src/style/main.less'
+import schema from './schema.json'
 
 const el = document.getElementById('root')
 // 设计器
-new Epage({ el, widgets, schema, Render })
+new Epage({
+  el,
+  pc: {
+    widgets,
+    Render: render.VueRender,
+    component: entry
+  }
+})
 // 或者创建渲染器
 new Render({ el, widgets, schema })
 ```
@@ -46,6 +57,7 @@ new Render({ el, widgets, schema })
 ```html
 <!-- 样式 -->
 <link href='https://cdn.bootcss.com/iview/3.5.1/styles/iview.css' rel='stylesheet'></link>
+<link href='./epage.css' rel='stylesheet'></link>
 <link href='./epage-iview.css' rel='stylesheet'></link>
 
 <!-- 第三方脚本 -->
@@ -56,15 +68,24 @@ new Render({ el, widgets, schema })
 <script src='//cdn.jsdelivr.net/npm/sortablejs@1.8.4/Sortable.min.js' ></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.20.0/vuedraggable.umd.min.js' ></script>
 
+<script src="./epage-core.min.js"></script>
 <script src="./epage.min.js"></script>
 <script src="./epage-iview.min.js"></script>
 
 <script>
 const el = document.getElementById('root')
-const { default: widgets, Render } = EpageIview
+const { default: widgets, entry } = EpageIview
+const { render } = EpageCore
 
 // 设计器
-new Epage({ el, widgets, Render })
+new Epage({
+  el,
+  pc: {
+    widgets,
+    Render: render.VueRender,
+    component: entry
+  }
+})
 // 或者创建渲染器
 new Render({ el, widgets, schema })
 </script>

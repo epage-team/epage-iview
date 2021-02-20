@@ -2,11 +2,14 @@ const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
-const epagePath = path.resolve(__dirname, '../node_modules/epage/src')
+const resolve = name => path.resolve(__dirname, `../node_modules/${name}/src`)
+
 const scriptPath = [
   path.resolve(__dirname, '../src'),
   path.resolve(__dirname, '../examples'),
-  epagePath
+  resolve('epage'),
+  resolve('epage-core'),
+  resolve('epage-vant'),
 ]
 
 module.exports = {
@@ -75,7 +78,8 @@ module.exports = {
     extensions: ['.js', '.vue', '.jsx'],
     alias: {
       '@': path.resolve(__dirname, '../src'),
-      'epage-iview': path.resolve(__dirname, '../src/main.js')
+      'epage-iview': path.resolve(__dirname, '../src/main.js'),
+      'vue': 'vue/dist/vue.esm.js'
     }
   },
   stats: { children: false }

@@ -1,6 +1,8 @@
+import * as _setting from './setting'
+
+export const setting = _setting
 export { default as viewExtend } from './extends/view'
-export { default as Render } from './render'
-export { default as Epage } from 'epage'
+export { default as entry } from './entry/index.vue'
 
 export const inputWidget = require('./widgets/input')
 export const textareaWidget = require('./widgets/textarea')
@@ -23,7 +25,7 @@ export const buttonWidget = require('./widgets/button')
 
 export default [{
   title: '表单',
-  key: 'iview-form',
+  key: 'form',
   widgets: [
     inputWidget,
     textareaWidget,
@@ -42,7 +44,7 @@ export default [{
   ]
 }, {
   title: '展示',
-  key: 'iview-display',
+  key: 'display',
   widgets: [
     // tableWidget,
     textWidget,
@@ -50,7 +52,7 @@ export default [{
   ]
 }, {
   title: '布局',
-  key: 'iview-layout',
+  key: 'layout',
   widgets: [
     gridWidget
   ]

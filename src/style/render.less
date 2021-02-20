@@ -1,4 +1,4 @@
-@import url('~epage/src/style/var.less');
+// @import url('~epage/src/style/var.less');
 @import url('./var.less');
 @import url('./widgets/main.less');
 
@@ -36,12 +36,12 @@
 
 .ivu-form-item-content{
   &:hover{
-    .ep-widget-dynamic-remove{
+    .epiv-widget-dynamic-remove{
       display: inline-block;
     }
   }
 }
-.ep-widget-dynamic-remove{
+.@{epiv}-widget-dynamic-remove{
   display: none;
   font-size: 18px;
   text-align: center;
@@ -57,7 +57,7 @@
   box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.15);
   cursor: pointer;
 }
-.ep-widget-dynamic-container{
+.@{epiv}-widget-dynamic-container{
   border: 1px dashed #ccc;
   border-radius: 5px;
   margin-bottom: 10px;

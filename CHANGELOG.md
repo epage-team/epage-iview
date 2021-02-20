@@ -1,5 +1,51 @@
 # Change Log
 
+### 0.7.0（2021/2/20）
+
+- [feat] : 移动`Render`渲染器到`epage-core`包中
+
+```js
+// 旧用法
+import { Render } from 'epage-iview'
+// 新用法
+import { render } from 'epage-core'
+const { VueRender } = render
+```
+
+- [feat] : 重命名 `src/render/`为`src/entry/`
+- [feat] : 移除 `src/render/`为`src/entry/`
+
+```js
+// 旧用法
+import { Epage } from 'epage-iview'
+// 新用法
+import Epage from 'epage'
+```
+- [feat] : 增加`entry`模块导出
+```js
+import { render } from 'epage-core'
+import Epage from 'epage'
+import widgets, { entry } from 'epage-iview'
+
+new Epage({
+  el,
+  // 增加双端同时设计能力
+  pc: {
+    widgets,
+    component: entry,
+    Render: render.VueRender
+  }
+})
+// 旧用法继续使用
+new Epage({
+  el,
+  widgets,  // 暂时保留，未来会删除
+  Render // 暂时保留，未来会删除
+})
+```
+
+详情可参考[epage #CHANGELOG v0.7.0](https://github.com/didi/epage/blob/dev/CHANGELOG.md#0702021219)
+
 ### 0.6.1（2021/1/18）
 
 - [fix] : 修复widget被二次添加时，widget.Setting生命周期没有再次使用问题

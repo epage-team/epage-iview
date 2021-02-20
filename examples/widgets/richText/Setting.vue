@@ -2,9 +2,9 @@
 setting-form(:store='store' :setting='setting')
 </template>
 <script>
-import { Epage } from 'epage-iview'
+import { setting } from 'epage-core'
 
-const { SettingForm, settingExtend } = Epage.setting
+const { SettingForm, settingExtend } = setting
 
 export default {
   components: { SettingForm },
