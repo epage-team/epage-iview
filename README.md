@@ -21,8 +21,8 @@
 ## 安装
 
 ```sh
-npm install epage-core epage-iview -S
-# or yarn add epage-core epage-iview
+npm install epage-iview -S
+# or yarn add epage-iview
 ```
 
 ## 设计器及渲染器示例
@@ -42,6 +42,7 @@ const el = document.getElementById('root')
 // 设计器
 new Epage({
   el,
+  schema,
   pc: {
     widgets,
     Render: render.VueRender,
@@ -49,7 +50,7 @@ new Epage({
   }
 })
 // 或者创建渲染器
-new Render({ el, widgets, schema })
+new render.VueRender({ el, widgets, schema, component: entry })
 ```
 
 -  `script` 方式引入
@@ -80,6 +81,7 @@ const { render } = EpageCore
 // 设计器
 new Epage({
   el,
+  schema,
   pc: {
     widgets,
     Render: render.VueRender,
@@ -87,7 +89,7 @@ new Epage({
   }
 })
 // 或者创建渲染器
-new Render({ el, widgets, schema })
+new render.VueRender({ el, widgets, schema, component: entry })
 </script>
 
 ```

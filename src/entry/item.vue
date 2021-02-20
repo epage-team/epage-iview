@@ -4,7 +4,7 @@
   :style='getStyle()'
   @click='onOriginViewSelect($event, schema)'
 )
-  .ep-widget-item-name {{schema.name}}
+  .ep-widget-item-name(v-if='tab === "design"') {{schema.name}}
   div(v-if='tab === "design"')
     .ep-widget-btn.ep-widget-btn-delete.ep-icon.ep-icon-trash(
       title='删除'
