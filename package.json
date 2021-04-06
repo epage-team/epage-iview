@@ -50,7 +50,7 @@
     "iview": "^2.13.0",
     "vue": "^2.5.16",
     "vuex": "^3.1",
-    "epage-core": "^0.5.1"
+    "epage-core": "^0.5.4"
   },
   "peerDependencies": {},
   "devDependencies": {
