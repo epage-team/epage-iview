@@ -77,6 +77,7 @@ export default {
       if (isUsetime) {
         this.store.updateWidgetDefault({ [key]: 'usetime' })
       } else {
+        this.store.updateWidgetDefault({ [key]: '' })
         this.updateDefaultValue(option.range)
       }
     },
