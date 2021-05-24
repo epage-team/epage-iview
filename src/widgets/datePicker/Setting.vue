@@ -115,6 +115,7 @@ export default {
       if (isUsedate) {
         this.store.updateWidgetDefault({ [key]: 'usedate' })
       } else {
+        this.store.updateWidgetDefault({ [key]: '' })
         this.updateDefaultValue(option.range)
       }
     },
