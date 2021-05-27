@@ -1,9 +1,9 @@
 <template lang='pug'>
-Tree.epiv-cascader-datatree(:data="rootList" :render="renderContent")
+Tree.epiv-cascader-datatree(:data="rootList", :render="renderContent")
 </template>
 <script>
 import { helper } from 'epage-core'
-
+import { Tooltip } from 'iview'
 const { randomStr, isNumberString, include } = helper
 
 export default {
